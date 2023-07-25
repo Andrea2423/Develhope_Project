@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class Review_Manager {
@@ -18,6 +17,7 @@ public class Review_Manager {
 
         System.out.println("data:");
         String dataReview =scanner.nextLine();
+
 
         Review firstReview = new Review(hotelRating, commentHotel, dataReview);
 
