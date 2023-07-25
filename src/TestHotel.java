@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class TestHotel {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Hotel hotelMoresco = new Hotel();
