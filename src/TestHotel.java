@@ -6,7 +6,8 @@ public class TestHotel {
         Hotel hotelMoresco = new Hotel();
 
         hotelMoresco.setHotelName("Hotel Moresco");
-        hotelMoresco.setHotelRatingInStars(5.0);
+        hotelMoresco.setHotelCategory(4);
+        hotelMoresco.setHotelRating(5.0);
         hotelMoresco.setHotelFloors(4);
         hotelMoresco.setHotelAddress("L’Hotel Moresco si trova in Via Aurelia 96 – 17051 Andora (SV).");
         hotelMoresco.setHotelInfo("L’albergo è situato in posizione centrale, sulla splendida passeggiata a mare di Levante.\n" +

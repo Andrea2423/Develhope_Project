@@ -1,10 +1,11 @@
 public class Hotel {
     private String hotelName;
-    private double hotelRatingInStars;
+    private double hotelRating;
     private int hotelFloors;
     private String hotelAddress;
     private String hotelInfo;
     private String hotelServices;
+    private int hotelCategory;
 
     public String getHotelName() {
         return hotelName;
@@ -14,12 +15,20 @@ public class Hotel {
         this.hotelName = hotelName;
     }
 
-    public double getHotelRatingInStars() {
-        return hotelRatingInStars;
+    public int getHotelCategory() {
+        return hotelCategory;
     }
 
-    public void setHotelRatingInStars(double hotelRatingInStars) {
-        this.hotelRatingInStars = hotelRatingInStars;
+    public void setHotelCategory(int hotelCategory) {
+        this.hotelCategory = hotelCategory;
+    }
+
+    public double getHotelRating() {
+        return hotelRating;
+    }
+
+    public void setHotelRating(double hotelRating) {
+        this.hotelRating = hotelRating;
     }
 
     public int getHotelFloors() {
@@ -57,12 +66,14 @@ public class Hotel {
     @Override
     public String toString() {
         return "Hotel: '" + hotelName + '\'' +
-                "\nValutazione da 0 a 5: " + hotelRatingInStars + " stelle" +
+                "\nStelle: " + hotelCategory + "*" +
+                "\nValutazione hotel: " + hotelRating +
                 "\nPiani: " + hotelFloors +
                 "\nIndirizzo: '" + hotelAddress + '\'' +
                 "\n\nInfo: '" + hotelInfo + '\n' +
                 "\nServizi: '" + hotelServices;
     }
+
     public Hotel() {
         System.out.println("Benvenuto!");
     }
