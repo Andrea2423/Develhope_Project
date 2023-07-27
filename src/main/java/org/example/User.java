@@ -65,8 +65,8 @@ public class User {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String metodOfPayment) {
-        this.paymentMethod = metodOfPayment;
+    public void setPaymentMethod(String methodOfPayment) {
+        this.paymentMethod = methodOfPayment;
     }
 
 
@@ -78,6 +78,6 @@ public class User {
                 ", birthDate='" + birthDate + '\'' +
                 ", email='" + email + '\'' +
                 ", telephoneNumber=" + telephoneNumber + '\'' +
-                ", metodOfPayment='" + paymentMethod + '\'' + '}';
+                ", methodOfPayment='" + paymentMethod + '\'' + '}';
     }
 }
