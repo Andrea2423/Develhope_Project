@@ -1,23 +1,45 @@
 package org.example;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
 
-        //Esempio di creazione di un'istanza della classe Prenotazione
+        System.out.println("Benvenuti nel nostro Hotel!");
 
-        Prenotation prenotazione1 = new Prenotation("2023-07-25", "Mario Rossi", 1, true);
-        Prenotation prenotazione2 = new Prenotation("2023-08-10", "Luca Bianchi", 1, true);
-        Prenotation prenotazione3 = new Prenotation("2023-09-05", "Giulia Verdi", 1, true);
+        System.out.println("Inserisca il suo nome e cognome: ");
+        String nomeCliente = scanner.nextLine();
+
+        System.out.println("in quanti alloggierete?: ");
+        int numberPerson = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Durata pernottamento giorni: ");
+        int durata = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("conferma o annulla? per confermare la prenotazione scrivere true, sennò false");
+        boolean reservationConfirmed = scanner.nextBoolean();
+
+        //System.out.println("Data prenotazione");
+        LocalDate data = LocalDate.now();
+
+        // Ottieni l'orario corrente
+        LocalTime currentTime = LocalTime.now();
+
+        scanner.close();
+
+        Prenotation prenotazioneEffettuata = new Prenotation(data, nomeCliente, numberPerson, reservationConfirmed, currentTime, durata);
+
+
+
+        prenotazioneEffettuata.printDetails();
+
 
         /*System.out.println(Prenotation.getData());
-        System.out.println(Prenotation.getNomeCliente());
-        System.out.println(Prenotation.getNumeroPersone());
-        System.out.println(Prenotation.getreservationConfirmed());*/
-
-
-        /////////////////////////////////////////////
-        System.out.println(Prenotation.getData());
         prenotazione1.setData("2023-07-25");
         prenotazione1.setData("2023-07-25");
 
@@ -32,9 +54,8 @@ public class Main {
         System.out.println(Prenotation.getreservationConfirmed());
         prenotazione1.setreservationConfirmed(true);
         prenotazione1.setreservationConfirmed(true);
-        /////////////////////////////////////////////
 
-        /////////////////////////////////////////////
+
         System.out.println(Prenotation.getData());
         prenotazione2.setData("2023-08-10");
         prenotazione1.setData("2023-08-10");
@@ -50,9 +71,8 @@ public class Main {
         System.out.println(Prenotation.getreservationConfirmed());
         prenotazione2.setreservationConfirmed(true);
         prenotazione1.setreservationConfirmed(true);
-        /////////////////////////////////////////////
 
-        /////////////////////////////////////////////
+
         System.out.println(Prenotation.getData());
         prenotazione3.setData("2023-09-05");
         prenotazione1.setData("2023-09-05");
@@ -67,27 +87,7 @@ public class Main {
 
         System.out.println(Prenotation.getreservationConfirmed());
         prenotazione3.setreservationConfirmed(true);
-        prenotazione1.setreservationConfirmed(true);
-        /////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        prenotazione1.setreservationConfirmed(true);*/
 
 
     }
