@@ -133,10 +133,7 @@ public class Registration {
             return; // Esce dal metodo se la registrazione non può essere completata
         }
 
-        // Effettua la registrazione al sito
-        // Qui puoi inserire la logica specifica per la registrazione al tuo sito
-        // Ad esempio, potresti inviare una richiesta HTTP al server del sito per inviare i dati di registrazione
-        // o interagire con un database per salvare le informazioni dell'utente
+
 
         System.out.println("Registrazione completata con successo!");
     }
