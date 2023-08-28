@@ -17,6 +17,10 @@ public class Main {
         int numberPerson = scanner.nextInt();
         scanner.nextLine();
 
+        System.out.print("Inserisci il prezzo della camera: ");
+        double prezzoInserito = scanner.nextDouble();
+        scanner.nextLine();
+
         System.out.println("Durata pernottamento giorni: ");
         int durata = scanner.nextInt();
         scanner.nextLine();
@@ -31,7 +35,7 @@ public class Main {
 
         scanner.close();
 
-        Prenotation prenotazioneEffettuata = new Prenotation(data, nomeCliente, numberPerson, reservationConfirmed, currentTime, durata);
+        Prenotation prenotazioneEffettuata = new Prenotation(data, nomeCliente, numberPerson, prezzoInserito, reservationConfirmed, currentTime, durata);
 
         prenotazioneEffettuata.printDetails();
 
