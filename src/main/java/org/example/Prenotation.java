@@ -11,12 +11,13 @@ public class Prenotation {
     private static String nomeCliente;
     private static int numeroPersone;
     private static LocalTime time;
+    private static double price;
     private static int durataPernottamento;
     private static boolean reservationConfirmed;
 
 
     //metodo costruttore
-    public Prenotation(LocalDate data, String nomeCliente, int numeroPersone, boolean reservationConfirmed, LocalTime time, int durataPernottamento) {
+    public Prenotation(LocalDate data, String nomeCliente, int numeroPersone, boolean reservationConfirmed, LocalTime time, double price, int durataPernottamento) {
         Prenotation.data = data;
         Prenotation.nomeCliente = nomeCliente;
         Prenotation.numeroPersone = numeroPersone;
@@ -51,6 +52,14 @@ public class Prenotation {
         Prenotation.numeroPersone = numeroPersone;
     }
 
+    public static double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        Prenotation.price = price;
+    }
+
     public static int getDurataPernottamento() {
         return durataPernottamento;
     }
@@ -73,13 +82,12 @@ public class Prenotation {
 
     public void LocalTime(LocalTime time) {
         Prenotation.time = time;
-
     }
 
     public void printDetails() {
         System.out.println("Dati personali cliente: " + nomeCliente + "\n" + "numero persone prenotate : " +
                 numeroPersone + "\n" + "data di prenotazione: " + data + "\n" + "ora di prenotazione: " + time + "\n" +
-                "durata pernottamento giorni: " + durataPernottamento + "\n" + "la prenotazione è confermata? " + reservationConfirmed);
+                "durata pernottamento giorni: " + durataPernottamento + "\n" + "scegli il prezzo" + price + "\n" + "la prenotazione è confermata? " + reservationConfirmed);
     }
 
 
