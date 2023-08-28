@@ -1,9 +1,12 @@
 package org.example;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Prenotation {
     //variabili di istanza
+
+                           //attributo
     private static LocalDate data;
     private static String nomeCliente;
     private static int numeroPersone;
@@ -14,15 +17,13 @@ public class Prenotation {
 
     //metodo costruttore
     public Prenotation(LocalDate data, String nomeCliente, int numeroPersone, boolean reservationConfirmed, LocalTime time, int durataPernottamento) {
-        this.data = data;
-        this.nomeCliente = nomeCliente;
-        this.numeroPersone = numeroPersone;
-        this.time = time;
-        this.reservationConfirmed = reservationConfirmed;
-        this.durataPernottamento = durataPernottamento;
+        Prenotation.data = data;
+        Prenotation.nomeCliente = nomeCliente;
+        Prenotation.numeroPersone = numeroPersone;
+        Prenotation.time = time;
+        Prenotation.reservationConfirmed = reservationConfirmed;
+        Prenotation.durataPernottamento = durataPernottamento;
     }
-
-
 
 
     // Metodi get e set per accedere e modificare gli attributi
@@ -31,7 +32,7 @@ public class Prenotation {
     }
 
     public void setData(LocalDate data) {
-        this.data = data;
+        Prenotation.data = data;
     }
 
     public static String getNomeCliente() {
@@ -39,7 +40,7 @@ public class Prenotation {
     }
 
     public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+        Prenotation.nomeCliente = nomeCliente;
     }
 
     public static int getNumeroPersone() {
@@ -47,7 +48,7 @@ public class Prenotation {
     }
 
     public void setNumeroPersone(int numeroPersone) {
-        this.numeroPersone = numeroPersone;
+        Prenotation.numeroPersone = numeroPersone;
     }
 
     public static int getDurataPernottamento() {
@@ -55,7 +56,7 @@ public class Prenotation {
     }
 
     public void setDurataPernottamento(int durataPernottamento) {
-        this.durataPernottamento = durataPernottamento;
+        Prenotation.durataPernottamento = durataPernottamento;
     }
 
     public static boolean getreservationConfirmed() {
@@ -63,24 +64,23 @@ public class Prenotation {
     }
 
     public void setreservationConfirmed(boolean reservationConfirmed) {
-        this.reservationConfirmed = reservationConfirmed;
+        Prenotation.reservationConfirmed = reservationConfirmed;
     }
 
     public static LocalTime getLocalTime() {
         return getLocalTime();
     }
 
-    public void LocalTime (LocalTime time) {
-        this.time = time;
+    public void LocalTime(LocalTime time) {
+        Prenotation.time = time;
 
     }
 
     public void printDetails() {
         System.out.println("Dati personali cliente: " + nomeCliente + "\n" + "numero persone prenotate : " +
-                numeroPersone + "\n"  + "data di prenotazione: " + data + "\n" + "ora di prenotazione: " + time + "\n" +
-                "durata pernottamento giorni: " + durataPernottamento + "\n" + "la prenotazione è confermata? " +  reservationConfirmed);
+                numeroPersone + "\n" + "data di prenotazione: " + data + "\n" + "ora di prenotazione: " + time + "\n" +
+                "durata pernottamento giorni: " + durataPernottamento + "\n" + "la prenotazione è confermata? " + reservationConfirmed);
     }
 
-  
 
 }

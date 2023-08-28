@@ -1,4 +1,5 @@
 package org.example;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -6,7 +7,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
 
         System.out.println("Benvenuti nel nostro Hotel!");
 
@@ -24,7 +24,6 @@ public class Main {
         System.out.println("conferma o annulla? per confermare la prenotazione scrivere true, sennò false");
         boolean reservationConfirmed = scanner.nextBoolean();
 
-        //System.out.println("Data prenotazione");
         LocalDate data = LocalDate.now();
 
         // Ottieni l'orario corrente
@@ -33,8 +32,6 @@ public class Main {
         scanner.close();
 
         Prenotation prenotazioneEffettuata = new Prenotation(data, nomeCliente, numberPerson, reservationConfirmed, currentTime, durata);
-
-
 
         prenotazioneEffettuata.printDetails();
 
