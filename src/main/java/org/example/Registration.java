@@ -133,9 +133,7 @@ public class Registration {
             return; // Esce dal metodo se la registrazione non può essere completata
         }
 
-        // qui è per collegare la pagina a un futuro sito dove potremo inviare una 
-        // richiesta HTTP al server del sito per interagire con un futuro database  
-        // per inviare e salvare informazioni per ogni utente
+
 
         System.out.println("Registrazione completata con successo!");
     }
