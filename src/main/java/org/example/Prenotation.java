@@ -2,12 +2,11 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Prenotation {
     //variabili di istanza
 
-                           //attributo
+    //attributo
     private static LocalDate data;
     private static String nomeCliente;
     private static int numeroPersone;
@@ -18,11 +17,10 @@ public class Prenotation {
 
 
     //metodo costruttore
-    public Prenotation(LocalDate data, String nomeCliente, int numeroPersone, double price, boolean reservationConfirmed, LocalTime time, int durataPernottamento) {
+    public Prenotation(LocalDate data, String nomeCliente, int numeroPersone, boolean reservationConfirmed, LocalTime time, double price, int durataPernottamento) {
         Prenotation.data = data;
         Prenotation.nomeCliente = nomeCliente;
         Prenotation.numeroPersone = numeroPersone;
-        Prenotation.price = price;
         Prenotation.time = time;
         Prenotation.reservationConfirmed = reservationConfirmed;
         Prenotation.durataPernottamento = durataPernottamento;
@@ -61,6 +59,7 @@ public class Prenotation {
     public void setPrice(double price) {
         Prenotation.price = price;
     }
+
     public static int getDurataPernottamento() {
         return durataPernottamento;
     }
@@ -83,7 +82,6 @@ public class Prenotation {
 
     public void LocalTime(LocalTime time) {
         Prenotation.time = time;
-
     }
 
     public void printDetails() {
