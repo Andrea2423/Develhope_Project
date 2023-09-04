@@ -92,7 +92,6 @@ public class Review {
     public int getRatingService() {
         return ratingService;
     }
-
     public void setRatingService(int ratingService) {
         this.ratingService = ratingService;
     }
@@ -120,6 +119,4 @@ public class Review {
     public void setDateReview(LocalDateTime dateReview) {
         this.dateReview = dateReview;
     }
-
-
 }
