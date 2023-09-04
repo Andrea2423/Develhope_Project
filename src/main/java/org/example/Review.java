@@ -1,69 +1,125 @@
 package org.example;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Review {
-    private String reviewerName;
-    private String stayDate;
-    private int hotelRating;
+    // private User user;   // aspetto inserimento della classe User
+    // private Room room;  //aspetto inserimento della classe Room
+    private int ratingLocation;
+    private int ratingService;
+    private int qualityPrice;
+    private String commentReview;
+    private LocalDateTime dateReview;
 
-    private String commentHotel;
-
-    private LocalDateTime dataReview;
-
-    public String getReviewerName(){
-        return reviewerName;
+    public static int totalPointToStructure(Review review){
+        return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
     }
 
-    public void setReviewerName(String reviewerName){
-        this.reviewerName = reviewerName;
+    public static double avarageRatingLocation(List<Review> reviewList){
+        int total = 0;
+        for (Review review : reviewList){
+            total += review.getRatingLocation();
+        }
+        return total / reviewList.size();
+    }
+    public static double avarageRatingService(List<Review> reviewList){
+        int total = 0;
+        for (Review review : reviewList){
+            total += review.getRatingService();
+        }
+        return total / reviewList.size();
+    }
+    public static double avarageRatingQualityPrice(List<Review> reviewList){
+        int total = 0;
+        for (Review review : reviewList){
+            total += review.getQualityPrice();
+        }
+        return total / reviewList.size();
     }
 
-    public String getStayDate(){
-        return stayDate;
+    @Override
+    public String toString() {
+        return "Review{" +
+                // "user=" + user +
+                //", room=" + room +
+                ", ratingLocation=" + ratingLocation +
+                ", ratingService=" + ratingService +
+                ", qualityPrice=" + qualityPrice +
+                ", commentReview='" + commentReview + '\'' +
+                ", dateReview=" + dateReview +
+                '}';
     }
 
-    public void setStayDate(String stayDate){
-        this.stayDate = stayDate;
+    public Review(int ratingLocation,int ratingService,int qualityPrice, String commentReview, LocalDateTime dateReview) {
+        //this.user = user;
+        //this.room = room;
+        this.ratingLocation = ratingLocation;
+        this.ratingService = ratingService;
+        this.qualityPrice = qualityPrice;
+        this.commentReview = commentReview;
+        this.dateReview = dateReview;
     }
 
-    public int getHotelRating() {
-        return hotelRating;
+    /*
+    public User getUser() {
+        return user;
     }
 
-    public void setHotelRating(int hotelRating) {
-        this.hotelRating = hotelRating;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getCommentHotel() {
-        return commentHotel;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setCommentHotel(String commentHotel) {
-        this.commentHotel = commentHotel;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public LocalDateTime getDataReview() {
-        return dataReview;
+     */
+
+    public int getRatingLocation() {
+        return ratingLocation;
     }
 
-    public void setDataReview(LocalDateTime dataReview) {
-        this.dataReview = dataReview;
+    public void setRatingLocation(int ratingStructure) {
+        this.ratingLocation = ratingLocation;
+    }
+
+    public int getRatingService() {
+        return ratingService;
+    }
+
+    public void setRatingService(int ratingService) {
+        this.ratingService = ratingService;
+    }
+
+    public int getQualityPrice() {
+        return qualityPrice;
+    }
+
+    public void setQualityPrice(int qualityPrice) {
+        this.qualityPrice = qualityPrice;
+    }
+
+    public String getCommentReview() {
+        return commentReview;
+    }
+
+    public void setCommentReview(String commentReview) {
+        this.commentReview = commentReview;
+    }
+
+    public LocalDateTime getDateReview() {
+        return dateReview;
+    }
+
+    public void setDateReview(LocalDateTime dateReview) {
+        this.dateReview = dateReview;
     }
 
 
-
-    public Review(String reviewerName,String stayDate, int hotelRating, String commentHotel, LocalDateTime dataReview){
-        this.reviewerName = reviewerName;
-        this.stayDate = stayDate;
-        this.hotelRating = hotelRating;
-        this.commentHotel = commentHotel;
-        this.dataReview = dataReview;
-    }
-
-    public void printDetails(){
-        System.out.println( "Nome dell'autore della recensione: " + reviewerName + "\n" + "periodo del soggiormo presso la struttura: "+ stayDate + "\n"+"valutazione data dal cliente: " + hotelRating + "\n" +
-                "commento del cliente: " + commentHotel + "\n" +
-                "data della recensione: " + dataReview);
-    }
 }
