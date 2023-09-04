@@ -3,6 +3,9 @@ package org.example;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
+//import org.junit.Test;
+//import org.junit.jupiter.api.Test;
+//import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPrenotation {
     public static void main(String[] args) {
@@ -17,8 +20,9 @@ public class TestPrenotation {
         int numberPerson = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Inserisci il prezzo della camera: ");
-        double prezzoInserito = scanner.nextDouble();
+        System.out.print("Scrivere il prezzo della camera: ");
+        int prezzoInserito = scanner.nextInt();
+        scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("Durata pernottamento giorni: ");

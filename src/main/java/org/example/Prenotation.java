@@ -24,6 +24,7 @@ public class Prenotation {
         Prenotation.time = time;
         Prenotation.reservationConfirmed = reservationConfirmed;
         Prenotation.durataPernottamento = durataPernottamento;
+        Prenotation.price = price;
     }
 
 
@@ -52,11 +53,11 @@ public class Prenotation {
         Prenotation.numeroPersone = numeroPersone;
     }
 
-    public static double getPrice() {
-        return price;
+    public static int getPrice() {
+        return (int) price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         Prenotation.price = price;
     }
 
