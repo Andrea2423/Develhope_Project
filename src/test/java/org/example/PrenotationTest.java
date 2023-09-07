@@ -13,5 +13,7 @@ public class PrenotationTest {
         Prenotation prenotation = new Prenotation(LocalDate.of(2023, 9, 7),
         "Luca Rossi", 2, true,LocalTime.of(10, 0),
         150.0, 3);
+
+        prenotation.printDetails();
     }
 }
