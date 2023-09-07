@@ -1,9 +1,12 @@
+package org.example;
+
 public class PlacesOfInterest {
     private String region;
     private String city;
     private String placeOfInterest;
 
-    public PlacesOfInterest() {}
+    public PlacesOfInterest() {
+    }
 
     public PlacesOfInterest(String placeOfInterest) {
         this.placeOfInterest = placeOfInterest;
