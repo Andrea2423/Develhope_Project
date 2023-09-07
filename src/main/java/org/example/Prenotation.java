@@ -2,94 +2,94 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public class Prenotation {
     //variabili di istanza
 
     //attributo
-    private static LocalDate data;
-    private static String nomeCliente;
-    private static int numeroPersone;
-    private static LocalTime time;
-    private static double price;
-    private static int durataPernottamento;
-    private static boolean reservationConfirmed;
+    private LocalDate data;
+    private String nomeCliente;
+    private int numeroPersone;
+    private LocalTime time;
+    private double price;
+    private int durataPernottamento;
+    private boolean reservationConfirmed;
 
 
     //metodo costruttore
     public Prenotation(LocalDate data, String nomeCliente, int numeroPersone, boolean reservationConfirmed, LocalTime time, double price, int durataPernottamento) {
-        Prenotation.data = data;
-        Prenotation.nomeCliente = nomeCliente;
-        Prenotation.numeroPersone = numeroPersone;
-        Prenotation.time = time;
-        Prenotation.reservationConfirmed = reservationConfirmed;
-        Prenotation.durataPernottamento = durataPernottamento;
-        Prenotation.price = price;
+        this.data = data;
+        this.nomeCliente = nomeCliente;
+        this.numeroPersone = numeroPersone;
+        this.time = time;
+        this.reservationConfirmed = reservationConfirmed;
+        this.durataPernottamento = durataPernottamento;
+        this.price = price;
     }
 
 
     // Metodi get e set per accedere e modificare gli attributi
-    public static LocalDate getData() {
+    public LocalDate getData() {
         return data;
     }
 
     public void setData(LocalDate data) {
-        Prenotation.data = data;
+        this.data = data;
     }
 
-    public static String getNomeCliente() {
+    public String getNomeCliente() {
         return nomeCliente;
     }
 
     public void setNomeCliente(String nomeCliente) {
-        Prenotation.nomeCliente = nomeCliente;
+        this.nomeCliente = nomeCliente;
     }
 
-    public static int getNumeroPersone() {
+    public int getNumeroPersone() {
         return numeroPersone;
     }
 
     public void setNumeroPersone(int numeroPersone) {
-        Prenotation.numeroPersone = numeroPersone;
+        this.numeroPersone = numeroPersone;
     }
 
-    public static int getPrice() {
-        return (int) price;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrice(int price) {
-        Prenotation.price = price;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public static int getDurataPernottamento() {
+    public int getDurataPernottamento() {
         return durataPernottamento;
     }
 
     public void setDurataPernottamento(int durataPernottamento) {
-        Prenotation.durataPernottamento = durataPernottamento;
+        this.durataPernottamento = durataPernottamento;
     }
 
-    public static boolean getreservationConfirmed() {
+    public boolean getreservationConfirmed() {
         return reservationConfirmed;
     }
 
     public void setreservationConfirmed(boolean reservationConfirmed) {
-        Prenotation.reservationConfirmed = reservationConfirmed;
+        this.reservationConfirmed = reservationConfirmed;
     }
 
-    public static LocalTime getLocalTime() {
+    public LocalTime getLocalTime() {
         return getLocalTime();
     }
 
     public void LocalTime(LocalTime time) {
-        Prenotation.time = time;
+        this.time = time;
     }
 
     public void printDetails() {
         System.out.println("Dati personali cliente: " + nomeCliente + "\n" + "numero persone prenotate : " +
                 numeroPersone + "\n" + "data di prenotazione: " + data + "\n" + "ora di prenotazione: " + time + "\n" +
-                "durata pernottamento giorni: " + durataPernottamento + "\n" + "scegli il prezzo" + price + "\n" + "la prenotazione è confermata? " + reservationConfirmed);
+                "durata pernottamento giorni: " + durataPernottamento + "\n" + "scegli il prezzo" + price + "\n" +
+                "la prenotazione è confermata? " + reservationConfirmed);
     }
-
-
 }
