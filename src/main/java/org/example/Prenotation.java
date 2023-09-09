@@ -84,10 +84,11 @@ public class Prenotation {
         Prenotation.time = time;
     }
 
-    public void printDetails() {
-        System.out.println("Dati personali cliente: " + nomeCliente + "\n" + "numero persone prenotate : " +
+    public String printDetails() {
+        String result = "Dati personali cliente: " + nomeCliente + "\n" + "numero persone prenotate : " +
                 numeroPersone + "\n" + "data di prenotazione: " + data + "\n" + "ora di prenotazione: " + time + "\n" +
-                "durata pernottamento giorni: " + durataPernottamento + "\n" + "scegli il prezzo" + price + "\n" + "la prenotazione è confermata? " + reservationConfirmed);
+                "durata pernottamento giorni: " + durataPernottamento + "\n" + "scegli il prezzo" + price + "\n" + "la prenotazione è confermata? " + reservationConfirmed;
+        return result;
     }
 
 

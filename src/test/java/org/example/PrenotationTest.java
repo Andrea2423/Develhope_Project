@@ -14,6 +14,14 @@ public class PrenotationTest {
                 "Luca Rossi", 2, true,LocalTime.of(10, 0),
                 150.0, 3);
 
-        prenotation.printDetails();
+        String result = prenotation.printDetails();
+
+        assertEquals("Dati personali cliente: Luca Rossi\n" +
+                "numero persone prenotate : 2\n" +
+                "data di prenotazione: 2023-09-07\n" +
+                "ora di prenotazione: 10:00\n" +
+                "durata pernottamento giorni: 3\n" +
+                "scegli il prezzo0.0\n" +
+                "la prenotazione è confermata? true", prenotation.printDetails());    //prenotation.printDetails();
     }
 }
