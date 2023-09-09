@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Review {
     private User user;
-    private Room room;
+    // private Room room;
     private int ratingLocation;
     private int ratingService;
     private int qualityPrice;
