@@ -23,5 +23,6 @@ public class PrenotationTest {
                 "durata pernottamento giorni: 3\n" +
                 "scegli il prezzo0.0\n" +
                 "la prenotazione è confermata? true", prenotation.printDetails());    //prenotation.printDetails();
+
     }
 }

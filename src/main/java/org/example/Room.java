@@ -15,7 +15,7 @@ public abstract class Room {
     public void setNumeroDiOspiti(int numeroDiOspiti) {
         this.numeroDiOspiti = numeroDiOspiti;
     }
-
+  
     public boolean getIsOccupied() {
         return isOccupied;
     }
