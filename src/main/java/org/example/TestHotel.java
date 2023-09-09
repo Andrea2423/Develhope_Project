@@ -1,3 +1,5 @@
+package org.example;
+
 import java.util.Scanner;
 
 public class TestHotel {
@@ -32,7 +34,6 @@ public class TestHotel {
         PlacesOfInterest fontanaDiTrevi = new PlacesOfInterest("Roma", "Fontana Di Trevi");
 
 
-
         do {
             System.out.println("Benvenuto!");
             System.out.println("Scegli cosa ricercare: \n" +
@@ -62,7 +63,7 @@ public class TestHotel {
                 case 2:
                     System.out.println("Inserisci il nome del luogo di interesse per avere delle informazioni a riguardo:");
                     String placeOfInterest = input.nextLine();
-                    switch(placeOfInterest) {
+                    switch (placeOfInterest) {
                         case "Colosseo":
                             System.out.println(colosseo.toString());
                             break;
@@ -77,6 +78,6 @@ public class TestHotel {
                             break;
                     }
             }
-        } while(true);
+        } while (true);
     }
 }

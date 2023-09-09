@@ -15,8 +15,7 @@ public abstract class Room {
     public void setNumeroDiOspiti(int numeroDiOspiti) {
         this.numeroDiOspiti = numeroDiOspiti;
     }
-
-
+  
     public boolean getIsOccupied() {
         return isOccupied;
     }
@@ -89,6 +88,4 @@ public abstract class Room {
             System.out.println("La stanza " + roomNumber + "NON è pronta per il checkin.");
         }
     }
-
-
 }

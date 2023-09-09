@@ -1,3 +1,5 @@
+package org.example;
+
 public class Hotel {
     private String hotelName;
     private double hotelRating;

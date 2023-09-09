@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Review {
-    // private User user;   // aspetto inserimento della classe User
-    // private Room room;  //aspetto inserimento della classe Room
+    private User user;
+    //private Room room;
     private int ratingLocation;
     private int ratingService;
     private int qualityPrice;
@@ -42,7 +42,7 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                // "user=" + user +
+                 "user=" + user +
                 //", room=" + room +
                 ", ratingLocation=" + ratingLocation +
                 ", ratingService=" + ratingService +
@@ -52,8 +52,8 @@ public class Review {
                 '}';
     }
 
-    public Review(int ratingLocation,int ratingService,int qualityPrice, String commentReview, LocalDateTime dateReview) {
-        //this.user = user;
+    public Review(User user, int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
+        this.user = user;
         //this.room = room;
         this.ratingLocation = ratingLocation;
         this.ratingService = ratingService;
@@ -62,7 +62,7 @@ public class Review {
         this.dateReview = dateReview;
     }
 
-    /*
+
     public User getUser() {
         return user;
     }
@@ -70,7 +70,7 @@ public class Review {
     public void setUser(User user) {
         this.user = user;
     }
-
+/*
     public Room getRoom() {
         return room;
     }
@@ -79,7 +79,7 @@ public class Review {
         this.room = room;
     }
 
-     */
+ */
 
     public int getRatingLocation() {
         return ratingLocation;
