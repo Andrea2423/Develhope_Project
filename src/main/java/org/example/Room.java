@@ -1,43 +1,41 @@
 package org.example;
 
-public abstract class Room {
-    private int roomNumber;
-    private String roomType;
-    private int numeroDiOspiti;
-    private boolean isOccupied;
-    private boolean isClean;
-    private double prezzoDiOggi;
+public class Room extends RoomManager {
+    private int roomNumber; //numero stanza
+    private String roomType; //tipologia di stanza
+    private int guests;  //numero ospiti
+    private double cost;  //costo stanza
 
-    public int getNumeroDiOspiti() {
-        return numeroDiOspiti;
+    public int getGuests() {
+        return guests;
     }
 
-    public void setNumeroDiOspiti(int numeroDiOspiti) {
-        this.numeroDiOspiti = numeroDiOspiti;
-    }
-  
-    public boolean getIsOccupied() {
-        return isOccupied;
+    public void setGuests(int numeroDiOspiti) {
+        this.guests = numeroDiOspiti;
     }
 
-    public void setOccupied(boolean occupied) {
-        isOccupied = occupied;
+    public boolean getavailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public boolean getIsClean() {
-        return isClean;
+        return clean;
     }
 
     public void setClean(boolean clean) {
-        isClean = clean;
+        this.clean = clean;
     }
 
     public double getPrice() {
-        return prezzoDiOggi;
+        return cost;
     }
 
     public void setPrice(double price) {
-        this.prezzoDiOggi = price;
+        this.cost = price;
     }
 
     public int getRoomNumber() {
@@ -56,36 +54,14 @@ public abstract class Room {
         this.roomType = roomType;
     }
 
-    public Room(int roomNumber, String roomType, boolean isOccupied, boolean isClean, double prezzoDiOggi) {
+    public Room() {}
 
-        this.roomNumber = roomNumber;
-        this.roomType = roomType;
-        this.isOccupied = isOccupied;
-        this.isClean = isClean;
-        this.prezzoDiOggi = prezzoDiOggi;
+    public Room(int guests, boolean available, boolean isClean, double cost) {
+        this.guests = guests;
+        this.available = available;
+        this.clean = isClean;
+        this.cost = cost;
     }
 
-    public void isOccupiedOrNot() {
-        if (isOccupied = true) {
-            System.out.println("La stanza " + roomNumber + "è occupata.");
-        } else {
-            System.out.println("La stanza " + roomNumber + "è libera.");
-        }
-    }
 
-    public void isCleanOrNot() {
-        if (isClean = true) {
-            System.out.println("La stanza " + roomNumber + "è pulita.");
-        } else {
-            System.out.println("La stanza " + roomNumber + "NON è pulita.");
-        }
-    }
-
-    public void canCheckIN() {
-        if (isOccupied = false && isClean == true) {
-            System.out.println("La stanza " + roomNumber + "è pronta per il checkin.");
-        } else {
-            System.out.println("La stanza " + roomNumber + "NON è pronta per il checkin.");
-        }
-    }
 }
