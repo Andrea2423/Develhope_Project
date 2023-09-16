@@ -52,7 +52,7 @@ public class Review {
                 '}';
     }
 
-    public Review(User user, int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
+    public Review(User user,Room room ,int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
         this.user = user;
         this.room = room;
         this.ratingLocation = ratingLocation;
