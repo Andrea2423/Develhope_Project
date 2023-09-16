@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReviewTest {
 
 
-    private Review review = new Review(new User("Claudio", "Caporaso", LocalDate.of(1999, 6, 7), "claudio.ca@gmail.com", 39354929602l, "Crypto"),
-            5, 5, 5, "Ottimo", LocalDateTime.now());
-    private Review review2 = new Review(new User("Claudio", "Caporaso", LocalDate.of(1999, 6, 7), "claudio.ca@gmail.com", 39354929602l, "Crypto"),
-            5, 5, 5, "Perfetto", LocalDateTime.now());
+    private Review review = new Review(new User("Claudio", "Caporaso", LocalDate.of(1999, 6, 7), "claudio.ca@gmail.com", "39354929602l", "Crypto"),
+            new Room(0, true, true, 50.50),5, 5, 5, "Ottimo", LocalDateTime.now());
+    private Review review2 = new Review(new User("Claudio", "Caporaso", LocalDate.of(1999, 6, 7), "claudio.ca@gmail.com", "39354929602l", "Crypto"),
+            new Room(0, true, true, 50.50),5, 5, 5, "Perfetto", LocalDateTime.now());
 
     @Test
     public void testTotalPointToStructure(){
