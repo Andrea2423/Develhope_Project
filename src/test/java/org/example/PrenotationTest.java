@@ -11,8 +11,8 @@ public class PrenotationTest {
     @Test
     public void testPrintDetails() {
         Prenotation prenotation = new Prenotation(LocalDate.of(2023, 9, 7),
-                "Luca Rossi", 2, true,LocalTime.of(10, 0),
-                150.0, 3);
+                "Luca Rossi", 2, LocalTime.of(10, 0),
+                0.0, 3, true);
 
         String result = prenotation.printDetails();
 
