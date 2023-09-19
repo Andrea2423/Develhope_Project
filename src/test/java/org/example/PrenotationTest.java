@@ -45,8 +45,8 @@ public class PrenotationTest {
                 "Luca Rossi", 2, LocalTime.of(10, 0),
                 100.0, 3, false, "Commento: richiesta di letto extra", false, true);
 
-        prenotation.addComment("Commento:");
+        prenotation.addComment("Commento: richiesta di letto extra");
 
-        assertEquals("Commento: ", prenotation.Comment());
+        assertEquals("Commento: richiesta di letto extra", prenotation.Comment());
     }
 }
