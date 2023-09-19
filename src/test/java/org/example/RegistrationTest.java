@@ -19,7 +19,7 @@ class RegistrationTest {
             "3201313893");
 
     @Test
-    public void testRegister(){
+    public void testRegister() {
         registration.register();
         assertEquals("Registrazione completata con successo!", registration.register());
     }

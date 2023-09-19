@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RoomManagerTest {
 
+
     @Test
     void addRoom() {
         Room room1 = new Room();
         room1.addRoom(1,"Double",2,true,true,100);
         int resut = room1.getGuests();
-        assertNotEquals(2,room1);
+        assertNotEquals(2,resut);
     }
 
     @Test
@@ -33,4 +34,6 @@ class RoomManagerTest {
     @Test
     void canCheckIN() {
     }
+
+
 }

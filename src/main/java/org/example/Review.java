@@ -13,27 +13,34 @@ public class Review {
     private String commentReview;
     private LocalDateTime dateReview;
 
-    public static int totalPointToStructure(Review review){
+    public static int totalPointToStructure(Review review) {
         return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
     }
 
-    public static double avarageRatingLocation(List<Review> reviewList){
+    public double calculateTotalAvarageRatingToStructure() {
+        double total = getRatingLocation() + getRatingService() + getQualityPrice();
+        return total / 3;
+    }
+
+    public static double avarageRatingLocation(List<Review> reviewList) {
         int total = 0;
-        for (Review review : reviewList){
+        for (Review review : reviewList) {
             total += review.getRatingLocation();
         }
         return total / reviewList.size();
     }
-    public static double avarageRatingService(List<Review> reviewList){
+
+    public static double avarageRatingService(List<Review> reviewList) {
         int total = 0;
-        for (Review review : reviewList){
+        for (Review review : reviewList) {
             total += review.getRatingService();
         }
         return total / reviewList.size();
     }
-    public static double avarageRatingQualityPrice(List<Review> reviewList){
+
+    public static double avarageRatingQualityPrice(List<Review> reviewList) {
         int total = 0;
-        for (Review review : reviewList){
+        for (Review review : reviewList) {
             total += review.getQualityPrice();
         }
         return total / reviewList.size();
@@ -52,7 +59,7 @@ public class Review {
                 '}';
     }
 
-    public Review(User user,Room room ,int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
+    public Review(User user, Room room, int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
         this.user = user;
         this.room = room;
         this.ratingLocation = ratingLocation;
@@ -90,6 +97,7 @@ public class Review {
     public int getRatingService() {
         return ratingService;
     }
+
     public void setRatingService(int ratingService) {
         this.ratingService = ratingService;
     }

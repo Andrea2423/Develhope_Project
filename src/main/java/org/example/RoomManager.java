@@ -3,11 +3,15 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RoomManager {
+public  abstract class RoomManager {
     boolean available;  //disponibile
     boolean clean;   //pulita
 
     private List<Room> rooms;
+
+    public RoomManager(boolean clean){
+        this.clean = clean;
+    }
 
     public RoomManager() {
         rooms = new ArrayList<>();
