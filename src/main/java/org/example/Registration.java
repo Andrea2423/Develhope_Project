@@ -1,23 +1,24 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Registration {
-
     private String name;
     private String surname;
     private String username;
     private String email;
     private String password;
     private String confirmPassword;
-    private Date birthDate;
-    private int telephoneNumber;
+    private LocalDate birthDate;
+    private String telephoneNumber;
     public boolean isValidEmail;
 
     public Registration() {
     }
 
-    public Registration(String name, String surname, String username, String email, String password, String confirmPassword, Date birthDate, int telephoneNumber) {
+    public Registration(String name, String surname, String username, String email, String password, String confirmPassword, LocalDate birthDate, String telephoneNumber) {
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -76,19 +77,19 @@ public class Registration {
         this.confirmPassword = confirmPassword;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
@@ -120,23 +121,12 @@ public class Registration {
 
     }
 
-    public void register() {
+    public String register() {
         // Verifica che la password e la conferma della password siano uguali
-        if (!password.equals(confirmPassword)) {
-            System.out.println("La password e la conferma della password non corrispondono.");
-            return; // Esce dal metodo se la registrazione non può essere completata
+        if (password.equals(confirmPassword)) {
+            return "Registrazione completata con successo!";
+        } else {
+            return "Le password non corrispondono";
         }
-
-        // Verifica che l'email sia valida
-        if (!isValidEmail(email)) {
-            System.out.println("L'email inserita non è valida.");
-            return; // Esce dal metodo se la registrazione non può essere completata
-        }
-
-
-
-        System.out.println("Registrazione completata con successo!");
     }
-
-
 }

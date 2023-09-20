@@ -12,7 +12,8 @@ public class PlacesOfInterest {
         this.placeOfInterest = placeOfInterest;
     }
 
-    public PlacesOfInterest(String city, String placeOfInterest) {
+    public PlacesOfInterest(String region, String city, String placeOfInterest) {
+        this.region = region;
         this.city = city;
         this.placeOfInterest = placeOfInterest;
     }
@@ -42,6 +43,6 @@ public class PlacesOfInterest {
     }
 
     public String toString() {
-        return "Città: " + city + "\nLuogo di interesse: " + placeOfInterest;
+        return "Regione: " + region + "\nCittà: " + city + "\nLuogo di interesse: " + placeOfInterest;
     }
 }

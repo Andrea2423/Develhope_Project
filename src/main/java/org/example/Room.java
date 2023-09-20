@@ -63,5 +63,9 @@ public class Room extends RoomManager {
         this.cost = cost;
     }
 
+    public Room(boolean isClean){
+        this.clean = isClean;
+    }
+
 
 }

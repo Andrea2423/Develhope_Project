@@ -27,11 +27,11 @@ public class TestHotel {
                 "Via Giuseppe Mangili, 31 - 00197 Villa Borghese/Parioli, Roma (RM)", 5,
                 9.2, 2);
 
-        PlacesOfInterest colosseo = new PlacesOfInterest("Roma", "Colosseo");
+        PlacesOfInterest colosseo = new PlacesOfInterest("Lazio","Roma", "Colosseo");
 
-        PlacesOfInterest piazzaNavona = new PlacesOfInterest("Roma", "Piazza Navona");
+        PlacesOfInterest piazzaNavona = new PlacesOfInterest("Lazio","Roma", "Piazza Navona");
 
-        PlacesOfInterest fontanaDiTrevi = new PlacesOfInterest("Roma", "Fontana Di Trevi");
+        PlacesOfInterest fontanaDiTrevi = new PlacesOfInterest("Lazio","Roma", "Fontana Di Trevi");
 
 
         do {
@@ -81,3 +81,5 @@ public class TestHotel {
         } while (true);
     }
 }
+
+
