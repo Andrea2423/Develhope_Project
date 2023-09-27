@@ -1,3 +1,4 @@
+
 package org.example;
 
 import java.util.Scanner;
@@ -81,5 +82,4 @@ public class TestHotel {
         } while (true);
     }
 }
-
 
