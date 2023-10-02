@@ -8,15 +8,14 @@ public class User {
     private String surname;
     private LocalDate dateOfBirth;
     private String email;
-    private long telephoneNumber;
-
+    private String telephoneNumber;
     private String paymentMethod;
 
 
     public User() {
     }
 
-    public User(String name, String surname, LocalDate dateOfBirth, String email, long telephoneNumber, String paymentMethod) {
+    public User(String name, String surname, LocalDate dateOfBirth, String email, String telephoneNumber, String paymentMethod) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
@@ -58,11 +57,11 @@ public class User {
         this.email = email;
     }
 
-    public long getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 

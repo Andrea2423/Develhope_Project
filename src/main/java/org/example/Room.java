@@ -1,43 +1,46 @@
 package org.example;
 
-public abstract class Room {
-    private int roomNumber;
-    private String roomType;
-    private int numeroDiOspiti;
-    private boolean isOccupied;
-    private boolean isClean;
-    private double prezzoDiOggi;
+import java.util.ArrayList;
 
-    public int getNumeroDiOspiti() {
-        return numeroDiOspiti;
+public class Room {
+    private int roomNumber; //numero stanza
+    private String roomType; //tipologia di stanza
+    private int guests;  //numero ospiti
+    private double cost;  //costo stanza
+    boolean available;  //disponibile
+    boolean clean;   //pulita
+
+
+    public int getGuests() {
+        return guests;
     }
 
-    public void setNumeroDiOspiti(int numeroDiOspiti) {
-        this.numeroDiOspiti = numeroDiOspiti;
-    }
-  
-    public boolean getIsOccupied() {
-        return isOccupied;
+    public void setGuests(int numeroDiOspiti) {
+        this.guests = numeroDiOspiti;
     }
 
-    public void setOccupied(boolean occupied) {
-        isOccupied = occupied;
+    public boolean getavailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public boolean getIsClean() {
-        return isClean;
+        return clean;
     }
 
     public void setClean(boolean clean) {
-        isClean = clean;
+        this.clean = clean;
     }
 
     public double getPrice() {
-        return prezzoDiOggi;
+        return cost;
     }
 
     public void setPrice(double price) {
-        this.prezzoDiOggi = price;
+        this.cost = price;
     }
 
     public int getRoomNumber() {
@@ -56,36 +59,83 @@ public abstract class Room {
         this.roomType = roomType;
     }
 
-    public Room(int roomNumber, String roomType, boolean isOccupied, boolean isClean, double prezzoDiOggi) {
-
+    public Room(int roomNumber, String roomType, int guests, boolean available, boolean clean, double cost) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.isOccupied = isOccupied;
-        this.isClean = isClean;
-        this.prezzoDiOggi = prezzoDiOggi;
+        this.guests = guests;
+        this.available = available;
+        this.clean = clean;
+        this.cost = cost;
     }
 
-    public void isOccupiedOrNot() {
-        if (isOccupied = true) {
-            System.out.println("La stanza " + roomNumber + "è occupata.");
-        } else {
+
+    ArrayList<String> rooms=new ArrayList<>();
+
+
+    public Room() {
+        rooms = new ArrayList<>();
+    }
+
+//    public void addRoom(int roomNumber, String roomType, int guest, boolean available, boolean clean, double cost) {
+//        Room addRoom = new Room();
+//        rooms.add(addRoom);
+//    }   // aggiungi stanza *DA AGGIUSTARE*
+
+    public String searchRoom(int roomNumber) {   //cerca stanza
+        for (String room : rooms) {
+            if (roomNumber == roomNumber) {
+                return room ;
+            }
+        }
+        return null;
+    } //cerca stanza
+
+//    public Room lisOfAvailableRooms() {
+//        List<Room> availableRooms = new ArrayList<>();
+//        for (String room : rooms) {
+//            if (available == true) {
+//                availableRooms.add(room);
+//            }
+//        }
+//        return null;
+//    } //elenco stanze disponibili *DA AGGIUSTARE*
+
+    public void isAvailableOrNot(int roomNumber) {
+        if (available = true) {
             System.out.println("La stanza " + roomNumber + "è libera.");
-        }
-    }
-
-    public void isCleanOrNot() {
-        if (isClean = true) {
-            System.out.println("La stanza " + roomNumber + "è pulita.");
         } else {
-            System.out.println("La stanza " + roomNumber + "NON è pulita.");
+            System.out.println("La stanza " + roomNumber + "è occupata.");
         }
-    }
+    }// è disponibile o no?
 
-    public void canCheckIN() {
-        if (isOccupied = false && isClean == true) {
-            System.out.println("La stanza " + roomNumber + "è pronta per il checkin.");
+    public void isCleanOrNot(Room room) {
+        if (room.clean == true) {
+            System.out.println("La stanza è pulita.");
         } else {
-            System.out.println("La stanza " + roomNumber + "NON è pronta per il checkin.");
+            System.out.println("La stanza NON è pulita.");
         }
+    } // è pulita o no?
+
+    public static void canCheckIN(Room roomNumber) {
+        if (roomNumber.available == true && roomNumber.clean == true) {
+            System.out.println("La stanza " + roomNumber.getRoomNumber() + " è pronta per il checkin.");
+        } else {
+            System.out.println("La stanza " + roomNumber.getRoomNumber() + " NON è pronta per il checkin.");
+        }
+    }// disponibile per il CheckIN
+
+
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Room{");
+        sb.append("roomNumber=").append(roomNumber);
+        sb.append(", roomType='").append(roomType).append('\'');
+        sb.append(", guests=").append(guests);
+        sb.append(", cost=").append(cost);
+        sb.append(", available=").append(available);
+        sb.append(", clean=").append(clean);
+        sb.append('}');
+        return sb.toString();
     }
 }
