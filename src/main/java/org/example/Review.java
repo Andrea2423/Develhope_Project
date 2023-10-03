@@ -1,17 +1,43 @@
 package org.example;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Review {
-    private User user;
-    private Room room;
+    private User user;           // creare una foreign key
+    private Room room;           // creare una foreign key
     private int ratingLocation;
     private int ratingService;
     private int qualityPrice;
     private String commentReview;
-    private LocalDateTime dateReview;
+    private LocalDateTime dateReview;       // da eliminare in futuro, è superflua
+
+    // metodo per inserire automaticamente gli oggetti review all'interno del database
+    public void insertReview(Review review) {
+
+        String queryInsert = "INSERT INTO review(location_rating, service_rating, quality_price_rating, comment_review) VALUES(?, ?, ?, ?);";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
+                    "root",
+                    "developerCamu*@");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
+            preparedStatement.setInt(1, review.getRatingLocation());
+            preparedStatement.setInt(2, review.getRatingService());
+            preparedStatement.setInt(3, review.getQualityPrice());
+            preparedStatement.setString(4, review.getCommentReview());
+
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error!");
+        }
+    }
 
     public static int totalPointToStructure(Review review) {
         return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
@@ -59,6 +85,10 @@ public class Review {
                 '}';
     }
 
+    public Review(){
+
+    }
+
     public Review(User user, Room room, int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
         this.user = user;
         this.room = room;
@@ -90,7 +120,7 @@ public class Review {
         return ratingLocation;
     }
 
-    public void setRatingLocation(int ratingStructure) {
+    public void setRatingLocation(int ratingLocation) {
         this.ratingLocation = ratingLocation;
     }
 
