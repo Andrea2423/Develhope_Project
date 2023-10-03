@@ -43,10 +43,10 @@ public class PrenotationTest {
     public void testAddComment() {
         Prenotation prenotation = new Prenotation(LocalDate.of(2023, 9, 7),
                 "Luca Rossi", 2, LocalTime.of(10, 0),
-                100.0, 3, false, "Commento: richiesta di letto extra", false, true);
+                100.0, 3, false, "richiesta di letto extra", false, true);
 
-        prenotation.addComment("Commento: richiesta di letto extra");
+        prenotation.addComment("richiesta di letto extra");
 
-        assertEquals("Commento: richiesta di letto extra", prenotation.Comment());
+        assertEquals("richiesta di letto extra", prenotation.Comment());
     }
 }
