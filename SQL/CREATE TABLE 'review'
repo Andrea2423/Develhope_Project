@@ -10,10 +10,11 @@ CREATE TABLE `review` (
 	`service_rating` INT(10) NULL DEFAULT NULL,
 	`quality_price_rating` INT(10) NULL DEFAULT NULL,
 	`comment_review` VARCHAR(500) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-	`data_review` DATE NULL DEFAULT NULL,
+	`data_review` DATETIME NULL DEFAULT (now()),
 	PRIMARY KEY (`review_id`) USING BTREE
 )
 COMMENT='in questa tabella sono presenti le recensioni che gli utenti rilasciano dopo aver soggiornato'
 COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
+AUTO_INCREMENT=9
 ;

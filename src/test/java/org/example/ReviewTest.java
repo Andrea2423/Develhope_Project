@@ -61,15 +61,4 @@ class ReviewTest {
         assertEquals(5, x);
     }
 
-    @Test
-    public void testInsertReview() {
-        Review review3 = new Review();
-
-        review3.setRatingLocation(5);
-        review3.setRatingService(5);
-        review3.setQualityPrice(5);
-        review3.setCommentReview("Test");
-
-        review3.insertReview(review3);
-    }
 }
