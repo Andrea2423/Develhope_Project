@@ -1,17 +1,23 @@
 package org.example;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Review {
-    private User user;
-    private Room room;
+    private User user;           // creare una foreign key
+    private Room room;           // creare una foreign key
     private int ratingLocation;
     private int ratingService;
     private int qualityPrice;
     private String commentReview;
-    private LocalDateTime dateReview;
+    private LocalDateTime dateReview;       // da eliminare in futuro, è superflua
+
+    // metodo per inserire automaticamente gli oggetti review all'interno del database
+
 
     public static int totalPointToStructure(Review review) {
         return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
@@ -59,6 +65,10 @@ public class Review {
                 '}';
     }
 
+    public Review() {
+
+    }
+
     public Review(User user, Room room, int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
         this.user = user;
         this.room = room;
@@ -90,7 +100,7 @@ public class Review {
         return ratingLocation;
     }
 
-    public void setRatingLocation(int ratingStructure) {
+    public void setRatingLocation(int ratingLocation) {
         this.ratingLocation = ratingLocation;
     }
 
