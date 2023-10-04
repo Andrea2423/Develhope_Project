@@ -21,6 +21,6 @@ static Prenotation prenotazione;
         System.out.println("commento aggiunto: " + comment);
     }
 
-};
+}
 
 
