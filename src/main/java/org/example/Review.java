@@ -17,27 +17,7 @@ public class Review {
     private LocalDateTime dateReview;       // da eliminare in futuro, è superflua
 
     // metodo per inserire automaticamente gli oggetti review all'interno del database
-    public void insertReview(Review review) {
 
-        String queryInsert = "INSERT INTO review(location_rating, service_rating, quality_price_rating, comment_review) VALUES(?, ?, ?, ?);";
-
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
-                    "root",
-                    "developerCamu*@");
-
-            PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
-            preparedStatement.setInt(1, review.getRatingLocation());
-            preparedStatement.setInt(2, review.getRatingService());
-            preparedStatement.setInt(3, review.getQualityPrice());
-            preparedStatement.setString(4, review.getCommentReview());
-
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error!");
-        }
-    }
 
     public static int totalPointToStructure(Review review) {
         return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
@@ -85,7 +65,7 @@ public class Review {
                 '}';
     }
 
-    public Review(){
+    public Review() {
 
     }
 
