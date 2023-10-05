@@ -1,11 +1,14 @@
 CREATE TABLE `prenotation` (
 	`id_prenotation` INT(11) NOT NULL AUTO_INCREMENT,
-	`costumers_names` VARCHAR(255) NOT NULL DEFAULT '0' COLLATE 'latin1_swedish_ci',
-	`booking_date_and_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-	`duration_of_the_booking` INT(11) NOT NULL DEFAULT '0',
-	`number of people booked` INT(11) NOT NULL DEFAULT '0',
-	`booking status` BIT(1) NOT NULL DEFAULT 'b\'0\'',
-	`extra_customer_requests` VARCHAR(255) NOT NULL DEFAULT '0' COLLATE 'latin1_swedish_ci',
+	`costumers_names` VARCHAR(255) NOT NULL COLLATE 'latin1_swedish_ci',
+	`number_of_people_booked` INT(11) NOT NULL,
+	`booking_date_and_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`duration_of_the_booking` INT(11) NOT NULL,
+	`price` DOUBLE NOT NULL,
+	`calculate_total` BIT(1) NOT NULL,
+	`extra_customer_requests` VARCHAR(255) NOT NULL COLLATE 'latin1_swedish_ci',
+	`cancel_the_reservation` BIT(1) NOT NULL,
+	`reservation_confirmed` BIT(1) NOT NULL,
 	PRIMARY KEY (`id_prenotation`) USING BTREE
 )
 COLLATE='latin1_swedish_ci'

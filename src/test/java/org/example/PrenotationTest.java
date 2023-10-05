@@ -13,13 +13,13 @@ public class PrenotationTest {
     @Test
     public void testPrintDetails() {
         Prenotation prenotation = new Prenotation(LocalDate.of(2023, 9, 7),
-                "Luca Rossi", 2, LocalTime.of(10, 0),
+                "Luca Rossi, Lucia brambilla", 2, LocalTime.of(10, 0),
                 0.0, 3, false, "richiesta di letto extra", false, true);
 
         String result = prenotation.printDetails();
         System.out.println(result);
 
-        assertEquals("Dati personali cliente: Luca Rossi\n" +
+        assertEquals("Dati personali cliente: Luca Rossi, Lucia brambilla\n" +
                 "numero persone prenotate : 2\n" +
                 "data di prenotazione: 2023-09-07\n" +
                 "ora di prenotazione: 10:00\n" +
@@ -31,7 +31,7 @@ public class PrenotationTest {
         @Test
     public void testCalculateTotal() {
         Prenotation prenotation = new Prenotation(LocalDate.of(2023, 9, 7),
-                "Luca Rossi", 2, LocalTime.of(10, 0),
+                "Luca Rossi, Lucia brambilla", 2, LocalTime.of(10, 0),
                 100.0, 3, false, "Commento: richiesta di letto extra", false, true);
 
         double total = prenotation.calculateTotal();
@@ -42,7 +42,7 @@ public class PrenotationTest {
     @Test
     public void testAddComment() {
         Prenotation prenotation = new Prenotation(LocalDate.of(2023, 9, 7),
-                "Luca Rossi", 2, LocalTime.of(10, 0),
+                "Luca Rossi, Lucia brambilla", 2, LocalTime.of(10, 0),
                 100.0, 3, false, "richiesta di letto extra", false, true);
 
         prenotation.addComment("richiesta di letto extra");
