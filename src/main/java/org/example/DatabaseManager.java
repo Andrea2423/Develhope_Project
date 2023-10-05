@@ -54,4 +54,27 @@ public class DatabaseManager {
         }
     }
 
+    public void insertRoom(Room room) {
+
+        String queryInsert = "INSERT INTO room(room_number,room_type,room_guest,room_cost,room_available,room_clean,room_time) VALUES(?,?,?,?,?,?,?)";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
+                    "root",
+                    "Asdasd123stella.");
+            PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
+            preparedStatement.setInt(1, room.getRoomNumber());
+            preparedStatement.setString(2, room.getRoomType());
+            preparedStatement.setInt(3, room.getGuests());
+            preparedStatement.setDouble(4, room.getPrice());
+            preparedStatement.setBoolean(5, room.getavailable());
+            preparedStatement.setBoolean(6, room.getIsClean());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error!");
+        }
+    }
+
 }

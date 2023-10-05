@@ -69,7 +69,7 @@ public class Room {
     }
 
 
-    ArrayList<String> rooms=new ArrayList<>();
+    ArrayList<Room> rooms = new ArrayList<>();
 
 
     public Room() {
@@ -82,9 +82,11 @@ public class Room {
 //    }   // aggiungi stanza *DA AGGIUSTARE*
 
     public String searchRoom(int roomNumber) {   //cerca stanza
-        for (String room : rooms) {
-            if (roomNumber == roomNumber) {
-                return room ;
+        for (Room room : rooms) {
+            if (room.getRoomNumber() == roomNumber) {
+                return room.toString();
+            } else {
+                return "La stanza non esiste.";
             }
         }
         return null;
@@ -123,7 +125,6 @@ public class Room {
             System.out.println("La stanza " + roomNumber.getRoomNumber() + " NON è pronta per il checkin.");
         }
     }// disponibile per il CheckIN
-
 
 
     @Override
