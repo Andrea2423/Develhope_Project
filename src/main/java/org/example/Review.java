@@ -8,18 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Review {
-    private User user;           // creare una foreign key
-    private Room room;           // creare una foreign key
-    private int ratingLocation;
-    private int ratingService;
-    private int qualityPrice;
+    private double ratingLocation;
+    private double ratingService;
+    private double qualityPrice;
     private String commentReview;
-    private LocalDateTime dateReview;       // da eliminare in futuro, è superflua
-
-    // metodo per inserire automaticamente gli oggetti review all'interno del database
 
 
-    public static int totalPointToStructure(Review review) {
+    public static double totalPointToStructure(Review review) {
         return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
     }
 
@@ -29,7 +24,7 @@ public class Review {
     }
 
     public static double avarageRatingLocation(List<Review> reviewList) {
-        int total = 0;
+        double total = 0;
         for (Review review : reviewList) {
             total += review.getRatingLocation();
         }
@@ -37,7 +32,7 @@ public class Review {
     }
 
     public static double avarageRatingService(List<Review> reviewList) {
-        int total = 0;
+        double total = 0;
         for (Review review : reviewList) {
             total += review.getRatingService();
         }
@@ -45,7 +40,7 @@ public class Review {
     }
 
     public static double avarageRatingQualityPrice(List<Review> reviewList) {
-        int total = 0;
+        double total = 0;
         for (Review review : reviewList) {
             total += review.getQualityPrice();
         }
@@ -55,13 +50,10 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "user=" + user +
-                ", room=" + room +
-                ", ratingLocation=" + ratingLocation +
-                ", ratingService=" + ratingService +
-                ", qualityPrice=" + qualityPrice +
-                ", commentReview='" + commentReview + '\'' +
-                ", dateReview=" + dateReview +
+                "ratingLocation: " + ratingLocation +
+                ", ratingService: " + ratingService +
+                ", qualityPrice: " + qualityPrice +
+                ", commentReview: '" + commentReview + '\'' +
                 '}';
     }
 
@@ -69,54 +61,35 @@ public class Review {
 
     }
 
-    public Review(User user, Room room, int ratingLocation, int ratingService, int qualityPrice, String commentReview, LocalDateTime dateReview) {
-        this.user = user;
-        this.room = room;
+    public Review(double ratingLocation, double ratingService, double qualityPrice, String commentReview) {
         this.ratingLocation = ratingLocation;
         this.ratingService = ratingService;
         this.qualityPrice = qualityPrice;
         this.commentReview = commentReview;
-        this.dateReview = dateReview;
     }
 
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public int getRatingLocation() {
+    public double getRatingLocation() {
         return ratingLocation;
     }
 
-    public void setRatingLocation(int ratingLocation) {
+    public void setRatingLocation(double ratingLocation) {
         this.ratingLocation = ratingLocation;
     }
 
-    public int getRatingService() {
+    public double getRatingService() {
         return ratingService;
     }
 
-    public void setRatingService(int ratingService) {
+    public void setRatingService(double ratingService) {
         this.ratingService = ratingService;
     }
 
-    public int getQualityPrice() {
+    public double getQualityPrice() {
         return qualityPrice;
     }
 
-    public void setQualityPrice(int qualityPrice) {
+    public void setQualityPrice(double qualityPrice) {
         this.qualityPrice = qualityPrice;
     }
 
@@ -128,11 +101,4 @@ public class Review {
         this.commentReview = commentReview;
     }
 
-    public LocalDateTime getDateReview() {
-        return dateReview;
-    }
-
-    public void setDateReview(LocalDateTime dateReview) {
-        this.dateReview = dateReview;
-    }
 }

@@ -17,9 +17,9 @@ public class DatabaseManager {
                     "developerCamu*@");
 
             PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
-            preparedStatement.setInt(1, review.getRatingLocation());
-            preparedStatement.setInt(2, review.getRatingService());
-            preparedStatement.setInt(3, review.getQualityPrice());
+            preparedStatement.setDouble(1, review.getRatingLocation());
+            preparedStatement.setDouble(2, review.getRatingService());
+            preparedStatement.setDouble(3, review.getQualityPrice());
             preparedStatement.setString(4, review.getCommentReview());
 
             preparedStatement.executeUpdate();
