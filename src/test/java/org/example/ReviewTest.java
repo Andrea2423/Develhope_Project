@@ -14,14 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewTest {
 
-    private Review review = new Review(new User("Claudio", "Caporaso", LocalDate.of(1999, 6, 7), "claudio.ca@gmail.com", "39354929602l", "Crypto"),
-            new Room(0, "Doppia", 2, true, true, 75.50), 5, 5, 5, "Ottimo", LocalDateTime.now());
-    private Review review2 = new Review(new User("Claudio", "Caporaso", LocalDate.of(1999, 6, 7), "claudio.ca@gmail.com", "39354929602l", "Crypto"),
-            new Room(0, "Doppia", 2, true, true, 75.50), 5, 5, 5, "Perfetto", LocalDateTime.now());
+    private Review review = new Review(5, 5, 5, "Ottimo");
+    private Review review2 = new Review( 5, 5, 5, "Perfetto");
 
     @Test
     public void testTotalPointToStructure() {
-        int total = Review.totalPointToStructure(review);
+        double total = Review.totalPointToStructure(review);
         assertEquals(15, total);
     }
 
