@@ -56,7 +56,7 @@ public class DatabaseManager {
 
     public void insertRoom(Room room) {
 
-        String queryInsert = "INSERT INTO room(room_number,room_type,room_guest,room_cost,room_available,room_clean,room_time) VALUES(?,?,?,?,?,?,?)";
+        String queryInsert = "INSERT INTO room(room_number, room_type, room_guest, room_cost, room_available, room_clean) VALUES( ? , ? , ? , ? , ? , ? )";
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
@@ -70,7 +70,7 @@ public class DatabaseManager {
             preparedStatement.setBoolean(5, room.getavailable());
             preparedStatement.setBoolean(6, room.getIsClean());
 
-
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error!");

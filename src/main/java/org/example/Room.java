@@ -67,14 +67,10 @@ public class Room {
         this.clean = clean;
         this.cost = cost;
     }
-
+    public Room(){}
 
     ArrayList<Room> rooms = new ArrayList<>();
 
-
-    public Room() {
-        rooms = new ArrayList<>();
-    }
 
 //    public void addRoom(int roomNumber, String roomType, int guest, boolean available, boolean clean, double cost) {
 //        Room addRoom = new Room();
