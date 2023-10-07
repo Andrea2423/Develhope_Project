@@ -78,8 +78,8 @@ public class DatabaseManager {
 
     public void insertPrenotation(Prenotation prenotation) {
 
-        String queryInsert = "INSERT INTO prenotation(costumers_names, number_of_people_booked, booking_date_and_time, duration_of_the_booking, price, calculate_total, extra_customer_requests, cancel_the_reservation, reservation_confirmed) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,);";
+        String queryInsert = "INSERT INTO prenotation(costumers_names, number_of_people_booked, duration_of_the_booking, price, extra_customer_requests, cancel_the_reservation, reservation_confirmed) " +
+                "VALUES(?, ?, ?, ?, ?, ?, ?);";
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
@@ -88,16 +88,14 @@ public class DatabaseManager {
 
             PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
 
-            preparedStatement.setString(1, prenotation.nomeCliente());
-            preparedStatement.setInt(2, prenotation.numeroPersone());
-            preparedStatement.setDate(3, Date.valueOf(prenotation.data()));
-            preparedStatement.setTime(4, Time.valueOf(prenotation.time()));
-            preparedStatement.setInt(5, prenotation.durataPernottamento());
-            preparedStatement.setDouble(6, prenotation.price());
-            preparedStatement.setBoolean(7, prenotation.calcolaTotale());
-            preparedStatement.setString(8, prenotation.Comment());
-            preparedStatement.setBoolean(9, prenotation.annullata());
-            preparedStatement.setBoolean(10, prenotation.reservationConfirmed());
+            preparedStatement.setString(1, prenotation.getClientName());
+            preparedStatement.setInt(2, prenotation.getNumeroPersone());
+            preparedStatement.setInt(3, prenotation.getDurataPernottamento());
+            preparedStatement.setDouble(4, prenotation.getPrice());
+            preparedStatement.setString(5, prenotation.getComment());
+            preparedStatement.setBoolean(6, prenotation.getAnnullata());
+            preparedStatement.setBoolean(7, prenotation.getReservationConfirmed());
+
 
             preparedStatement.executeUpdate();
         } catch (Exception e) {
