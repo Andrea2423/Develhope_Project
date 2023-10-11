@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class OwnerInputManager {
-    public void createRoom(){
+    public void createRoom() {
 
         Room room = new Room();
         DatabaseManager databaseManager = new DatabaseManager();
@@ -45,6 +45,27 @@ public class OwnerInputManager {
 
         scanner.close();
 
+    }
+
+    /*
+    creato questo metodo dove potenzialmente potremmo inserire tutti i metodi che richiedono ad un utente di
+    interagire tramite console grazie allo switch case
+     */
+    public void ownerAction() {
+
+        System.out.println("se vuoi vedere tutte le recensioni, inserisci il numero 1");
+        Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
+
+
+        switch (number) {
+            case 1:
+                DatabaseManager databaseManager = new DatabaseManager();
+                databaseManager.selectAllFromReview();
+                break;
+        }
+
+        scanner.close();
     }
 
 }
