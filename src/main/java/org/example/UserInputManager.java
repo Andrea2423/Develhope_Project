@@ -1,5 +1,7 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -38,6 +40,51 @@ public class UserInputManager {
         review.setCommentReview(commentReview);
 
         databaseManager.insertReview(review);
+
+        scanner.close();
+    }
+
+    public void createPrenotation() {
+
+        DatabaseManager databaseManager = new DatabaseManager();
+
+        Prenotation prenotation = new Prenotation();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter client name: ");
+        String clientName = scanner.nextLine();
+
+        System.out.print("Enter number of people: ");
+        int numberOfPeople = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter duration of stay: ");
+        int durationOfStay = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter price: ");
+        double price = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.print("Enter comment: ");
+        String comment = scanner.nextLine();
+
+        System.out.print("Is cancelled (true/false): ");
+        boolean isCancelled = scanner.nextBoolean();
+
+        System.out.print("Is reservation confirmed (true/false): ");
+        boolean isReservationConfirmed = scanner.nextBoolean();
+
+        prenotation.setClientName(clientName);
+        prenotation.setNumeroPersone(numberOfPeople);
+        prenotation.setDurataPernottamento(durationOfStay);
+        prenotation.setPrice(price);
+        prenotation.setComment(comment);
+        prenotation.setAnnullata(isCancelled);
+        prenotation.setReservationConfirmed(isReservationConfirmed);
+
+        databaseManager.insertPrenotation(prenotation);
 
         scanner.close();
     }

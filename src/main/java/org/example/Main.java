@@ -29,7 +29,12 @@ public class Main {
 
         ownerInputManager.createRoom();
 
+        Prenotation prenotation = new Prenotation();
 
+        Prenotation[] prenotations = {prenotation};
+        for (int i = 0; i < prenotations.length; i++) {
+            System.out.println(prenotation.printDetails());
+        }
     }
 }
 
