@@ -24,6 +24,7 @@ public class Main {
             System.out.println("\n");
         }
 
+
         OwnerInputManager ownerInputManager = new OwnerInputManager();
 
         ownerInputManager.createRoom();

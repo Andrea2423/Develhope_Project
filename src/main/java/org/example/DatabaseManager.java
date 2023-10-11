@@ -1,6 +1,7 @@
 package org.example;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class DatabaseManager {
 
@@ -101,6 +102,45 @@ public class DatabaseManager {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error!");
+        }
+    }
+
+    /*
+    metodo per selezionare tutte le recensioni, ma dopo lo modificherò perchè
+    non ha senso selezionare tutte le recensioni, ma ha più senso collegare la struttura della quale voglio
+    vedere la recensione e soprattutto l'utente che ha fatto la recensione
+     */
+
+    public void selectAllFromReview(){
+
+        String querySelect = "SELECT * FROM review WHERE data_review < NOW()";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
+                    "root",
+                    "developerCamu*@");
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(querySelect);
+
+            while (resultSet.next()){
+                int reviewID = resultSet.getInt("review_id");
+                double ratingLocation = resultSet.getDouble("location_rating");
+                double ratingService = resultSet.getDouble("service_rating");
+                double ratingQualityPrice = resultSet.getDouble("quality_price_rating");
+                String commentReview = resultSet.getString("comment_review");
+                Timestamp dateReview = resultSet.getTimestamp("data_review");
+
+                System.out.println("id recensione: " + reviewID);
+                System.out.println("valutazione location: " + ratingLocation);
+                System.out.println("valutazione del servizio: " + ratingService);
+                System.out.println("valutazione rapporto qualità - prezzo: " + ratingQualityPrice);
+                System.out.println("commento del soggiorno: " + commentReview);
+                System.out.println("data recensione: " + dateReview);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
         }
     }
 
