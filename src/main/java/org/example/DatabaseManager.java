@@ -10,9 +10,7 @@ public class DatabaseManager {
         String queryInsert = "INSERT INTO review(location_rating, service_rating, quality_price_rating, comment_review) VALUES(?, ?, ?, ?);";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
-                    "root",
-                    "developerCamu*@");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBcamu, Config.UsernameDBcamu, Config.PasswordDBcamu);
 
             PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
             preparedStatement.setDouble(1, review.getRatingLocation());
@@ -32,9 +30,7 @@ public class DatabaseManager {
         String queryInsert = "INSERT INTO user(name, surname, date_of_birth, email, phone_number, method_payment) VALUES(?, ?, ?, ?, ?, ?);";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
-                    "root",
-                    "developerCamu*@");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBcamu, Config.UsernameDBcamu, Config.PasswordDBcamu);
 
             PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
             preparedStatement.setString(1, user.getName());
@@ -57,9 +53,7 @@ public class DatabaseManager {
         String queryInsert = "INSERT INTO room(room_number, room_type, room_guest, room_cost, room_available, room_clean) VALUES( ? , ? , ? , ? , ? , ? )";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
-                    "root",
-                    "Asdasd123stella.");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBdruwan, Config.UsernameDBdruwan, Config.PasswordDBdruwan);
             PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
             preparedStatement.setInt(1, room.getRoomNumber());
             preparedStatement.setString(2, room.getRoomType());
@@ -76,16 +70,13 @@ public class DatabaseManager {
     }
 
 
-
     public void insertPrenotation(Prenotation prenotation) {
 
         String queryInsert = "INSERT INTO prenotation(costumers_names, number_of_people_booked, duration_of_the_booking, price, extra_customer_requests, cancel_the_reservation, reservation_confirmed) " +
                 "VALUES(?, ?, ?, ?, ?, ?, ?);";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
-                    "root",
-                    "Maicoldevelhope12.");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBmike, Config.UsernameDBmike, Config.PasswordDBmike);
 
             PreparedStatement preparedStatement = connection.prepareStatement(queryInsert);
 
@@ -111,20 +102,18 @@ public class DatabaseManager {
     vedere la recensione e soprattutto l'utente che ha fatto la recensione
      */
 
-    public void selectAllFromReview(){
+    public void selectAllFromReview() {
 
         String querySelect = "SELECT * FROM review WHERE data_review < NOW()";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_project",
-                    "root",
-                    "developerCamu*@");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBcamu, Config.UsernameDBcamu, Config.PasswordDBcamu);
 
             Statement statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery(querySelect);
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int reviewID = resultSet.getInt("review_id");
                 double ratingLocation = resultSet.getDouble("location_rating");
                 double ratingService = resultSet.getDouble("service_rating");
@@ -139,7 +128,7 @@ public class DatabaseManager {
                 System.out.println("commento del soggiorno: " + commentReview);
                 System.out.println("data recensione: " + dateReview);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

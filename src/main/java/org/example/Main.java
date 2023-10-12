@@ -1,5 +1,7 @@
 package org.example;
 
+import java.sql.*;
+
 import static org.example.Room.canCheckIN;
 
 public class Main {
@@ -24,10 +26,22 @@ public class Main {
             System.out.println("\n");
         }
 
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBdruwan, Config.UsernameDBdruwan, Config.PasswordDBdruwan);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT MAX(room_number) AS LAST_NUMBER " +
+                    "FROM room WHERE room_number;");
+            if (resultSet.next()) {
+                int lastRoomNumber = resultSet.getInt("LAST_NUMBER");
+                System.out.println("Last Room Number: " + lastRoomNumber); //per vedere l'ultimo numero di stanza creata
+            }
+            OwnerInputManager ownerInputManager = new OwnerInputManager();
+            ownerInputManager.createRoom();
 
-        OwnerInputManager ownerInputManager = new OwnerInputManager();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-        ownerInputManager.createRoom();
 
         Prenotation prenotation = new Prenotation();
 
@@ -35,7 +49,10 @@ public class Main {
         for (int i = 0; i < prenotations.length; i++) {
             System.out.println(prenotation.printDetails());
         }
+
+
     }
+
 }
 
 

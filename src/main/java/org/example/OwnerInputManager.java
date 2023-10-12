@@ -44,6 +44,7 @@ public class OwnerInputManager {
         databaseManager.insertRoom(room);
 
         scanner.close();
+        scanner.nextLine();
 
     }
 
