@@ -132,4 +132,40 @@ public class DatabaseManager {
         }
     }
 
+
+    public void selectAllFromPrenotation() {
+
+        String querySelect = "SELECT * FROM prenotation";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBcamu, Config.UsernameDBcamu, Config.PasswordDBcamu);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(querySelect);
+
+            while (resultSet.next()) {
+                int idPrenotation = resultSet.getInt("id_prenotation");
+                String clientName = resultSet.getString("costumers_names");
+                int numberPerson = resultSet.getInt("number_of_people_booked");
+                Timestamp dataPrenotation = resultSet.getTimestamp("booking_date_and_time");
+                int durataPernottamento = resultSet.getInt("duration_of_the_booking");
+                double price = resultSet.getDouble("price");
+                boolean annullata = resultSet.getBoolean("cancel_the_reservation");
+                boolean reservationConfirmed = resultSet.getBoolean("reservation_confirmed");
+
+                System.out.println("id prenotazione: " + idPrenotation);
+                System.out.println("nomi clienti: " + clientName);
+                System.out.println("numero persone prenotate: " + numberPerson);
+                System.out.println("data prenotazione: " + dataPrenotation);
+                System.out.println("durata pernottamento: " + durataPernottamento);
+                System.out.println("prezzo camera: " + price);
+                System.out.println("prenotazione annullata?: " + annullata);
+                System.out.println("prenotazione confermata?: " + reservationConfirmed);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
