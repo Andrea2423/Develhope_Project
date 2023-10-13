@@ -82,8 +82,7 @@ public class DatabaseManager {
 
             preparedStatement.setString(1, prenotation.getClientName());
             preparedStatement.setInt(2, prenotation.getNumeroPersone());
-            preparedStatement.setInt(3, prenotation.getDurataPernottamento());
-            preparedStatement.setDouble(4, prenotation.getPrice());
+            preparedStatement.setInt(3, prenotation.getDurataPernottamento());preparedStatement.setDouble(4, prenotation.getPrice());
             preparedStatement.setString(5, prenotation.getComment());
             preparedStatement.setBoolean(6, prenotation.getAnnullata());
             preparedStatement.setBoolean(7, prenotation.getReservationConfirmed());
