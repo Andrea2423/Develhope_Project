@@ -64,6 +64,10 @@ public class OwnerInputManager {
                 DatabaseManager databaseManager = new DatabaseManager();
                 databaseManager.selectAllFromReview();
                 break;
+            case 2:
+                DatabaseManager databaseManager2 = new DatabaseManager();
+                databaseManager2.selectAllFromPrenotation();
+                break;
         }
 
         scanner.close();

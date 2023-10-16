@@ -138,7 +138,7 @@ public class DatabaseManager {
         String querySelect = "SELECT * FROM prenotation";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBcamu, Config.UsernameDBcamu, Config.PasswordDBcamu);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBmike, Config.UsernameDBmike, Config.PasswordDBmike);
 
             Statement statement = connection.createStatement();
 
