@@ -1,7 +1,7 @@
 package org.example.repository;
 
 public class Config {
-
+    public static String urlDB = "jdbc:mysql://localhost:3306/";
     public static String NameDBdruwan = "team_project";
     public static String UsernameDBdruwan = "root";
     public static String PasswordDBdruwan = "Asdasd123stella.";

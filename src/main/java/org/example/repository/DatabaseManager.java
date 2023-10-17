@@ -6,6 +6,7 @@ import org.example.models.Room;
 import org.example.models.User;
 import org.example.repository.Config;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class DatabaseManager {
@@ -87,7 +88,8 @@ public class DatabaseManager {
 
             preparedStatement.setString(1, prenotation.getClientName());
             preparedStatement.setInt(2, prenotation.getNumeroPersone());
-            preparedStatement.setInt(3, prenotation.getDurataPernottamento());preparedStatement.setDouble(4, prenotation.getPrice());
+            preparedStatement.setInt(3, prenotation.getDurataPernottamento());
+            preparedStatement.setDouble(4, prenotation.getPrice());
             preparedStatement.setString(5, prenotation.getComment());
             preparedStatement.setBoolean(6, prenotation.getAnnullata());
             preparedStatement.setBoolean(7, prenotation.getReservationConfirmed());
@@ -170,6 +172,37 @@ public class DatabaseManager {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void selectAllFromRoom() {
+        String querySelect = "SELECT * FROM room";
+
+        try {
+            Connection connection = DriverManager.getConnection(Config.urlDB + Config.NameDBdruwan, Config.UsernameDBdruwan, Config.PasswordDBdruwan);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(querySelect);
+
+            while (resultSet.next()) {
+                int room_number = resultSet.getInt("room_number");
+                String room_type = resultSet.getString("room_type");
+                int room_guest = resultSet.getInt("room_guest");
+                double room_cost = resultSet.getDouble("room_cost");
+                boolean room_available = resultSet.getBoolean("room_available");
+                boolean room_clean = resultSet.getBoolean("room_clean");
+
+                System.out.println("-Room number: " + room_number);
+                System.out.println("--Room type: " + room_type);
+                System.out.println("---Room guest: " + room_guest);
+                System.out.println("----Room cost: €" + room_cost);
+                System.out.println("-----Room is available? " + room_available);
+                System.out.println("------Room is clean? " + room_clean);
+            }
+
+        } catch (SQLException e) {
+
         }
     }
 
