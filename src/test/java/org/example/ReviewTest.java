@@ -1,11 +1,8 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.example.models.Review;
 import org.junit.jupiter.api.Test;
 
-import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

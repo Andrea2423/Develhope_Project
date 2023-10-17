@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.models.Review;
+import org.example.models.User;
+import org.example.repository.DatabaseManager;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.models;
 
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {

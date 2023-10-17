@@ -1,10 +1,5 @@
-package org.example;
+package org.example.models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Review {

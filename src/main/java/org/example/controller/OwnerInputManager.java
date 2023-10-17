@@ -1,4 +1,7 @@
-package org.example;
+package org.example.controller;
+
+import org.example.repository.DatabaseManager;
+import org.example.models.Room;
 
 import java.util.Scanner;
 

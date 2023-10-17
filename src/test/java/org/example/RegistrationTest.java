@@ -1,10 +1,9 @@
 package org.example;
 
+import org.example.models.Registration;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
