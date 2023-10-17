@@ -1,5 +1,5 @@
-# creazione della tabella review
-README - devo ancora inserire le foreign key per collegare la tabella alle future tabelle di user e room
+-- creazione della tabella review
+-- README - devo ancora inserire le foreign key per collegare la tabella alle future tabelle di user e room
 
 
 

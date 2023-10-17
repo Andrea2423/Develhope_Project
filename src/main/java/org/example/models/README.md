@@ -1,0 +1,1 @@
+In questo package ci saranno inserite le classi che servono a raccogliere i dati, la logica del business

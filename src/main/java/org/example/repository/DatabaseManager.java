@@ -1,7 +1,12 @@
-package org.example;
+package org.example.repository;
+
+import org.example.models.Prenotation;
+import org.example.models.Review;
+import org.example.models.Room;
+import org.example.models.User;
+import org.example.repository.Config;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 
 public class DatabaseManager {
 

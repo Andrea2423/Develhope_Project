@@ -1,4 +1,4 @@
-# creazione della tabella che raccoglierà gli utenti
+-- creazione della tabella che raccoglierà gli utenti
 
 
 

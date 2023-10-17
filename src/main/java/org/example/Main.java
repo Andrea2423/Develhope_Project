@@ -1,8 +1,13 @@
 package org.example;
 
+import org.example.controller.OwnerInputManager;
+import org.example.models.Prenotation;
+import org.example.models.Room;
+import org.example.repository.Config;
+
 import java.sql.*;
 
-import static org.example.Room.canCheckIN;
+import static org.example.models.Room.canCheckIN;
 
 public class Main {
     public static void main(String[] args) {
