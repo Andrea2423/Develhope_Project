@@ -1,10 +1,12 @@
 package com.example.Develhope_Project;
 
 import com.example.Develhope_Project.controller.OwnerInputManager;
+import com.example.Develhope_Project.controller.UserInputManager;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.models.Room;
 
 import com.example.Develhope_Project.repository.Config;
+import com.example.Develhope_Project.repository.DatabaseManager;
 
 
 import java.sql.*;
@@ -52,11 +54,11 @@ public class Main {
 
 
         Prenotation prenotation = new Prenotation();
-
         Prenotation[] prenotations = {prenotation};
         for (int i = 0; i < prenotations.length; i++) {
             System.out.println(prenotation.printDetails());
         }
+
 
 
     }
