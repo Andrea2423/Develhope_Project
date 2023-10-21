@@ -4,6 +4,8 @@ import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.models.Review;
 import com.example.Develhope_Project.repository.DatabaseManager;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInputManager {

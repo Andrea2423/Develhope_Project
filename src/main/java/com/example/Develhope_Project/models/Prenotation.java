@@ -3,6 +3,10 @@ package com.example.Develhope_Project.models;
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Prenotation {
     private String clientName;
     private int numeroPersone;
@@ -93,6 +97,8 @@ public class Prenotation {
     public void addComment(String comment) {
         System.out.println("commento aggiunto: " + comment);
     }
+
+
 
 }
 

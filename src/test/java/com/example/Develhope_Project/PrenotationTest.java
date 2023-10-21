@@ -4,6 +4,9 @@ import com.example.Develhope_Project.models.Prenotation;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PrenotationTest {
@@ -20,18 +23,21 @@ public class PrenotationTest {
         assertEquals("Dati personali cliente: Luca Rossi\n" +
                 "numero persone prenotate : 2\n" +
                 "durata pernottamento giorni: 3\n" +
-                "scegli il prezzo100.0\n" + "Commento: richiesta di letto extra" + "\n" + "vuoi annullare la prenotazione?false" + "\n" +
+                "scegli il prezzo100.0\n" + "Commento: richiesta di letto extra" + "\n"
+                + "vuoi annullare la prenotazione?false" + "\n" +
                 "la prenotazione è confermata? true", prenotation.printDetails());
     }
+
 
     @Test
     public void testAddComment() {
         Prenotation prenotation = new Prenotation(
                 "Luca Rossi", 2,
-                100.0, 3, "richiesta di letto extra", false, true);
+                100.0, 3, "richiesta di letto extra",  false, true);
 
-        prenotation.addComment("richiesta di letto extra");
+        String comment = "richiesta di letto extra";
+        prenotation.addComment(comment);
 
-        assertEquals("richiesta di letto extra", prenotation.getComment());
+        assertEquals(comment, prenotation.getComment());
     }
 }

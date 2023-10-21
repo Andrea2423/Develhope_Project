@@ -5,6 +5,8 @@ import com.example.Develhope_Project.models.Room;
 import com.example.Develhope_Project.models.User;
 
 import java.sql.*;
+import java.util.Collections;
+import java.util.List;
 
 public class DatabaseManager {
 
@@ -155,6 +157,8 @@ public class DatabaseManager {
                 Timestamp dataPrenotation = resultSet.getTimestamp("booking_date_and_time");
                 int durataPernottamento = resultSet.getInt("duration_of_the_booking");
                 double price = resultSet.getDouble("price");
+                String comment = resultSet.getString("extra_customer_requests");
+                List<String> serviziExtra = Collections.singletonList(resultSet.getString("extra_service"));
                 boolean annullata = resultSet.getBoolean("cancel_the_reservation");
                 boolean reservationConfirmed = resultSet.getBoolean("reservation_confirmed");
 
@@ -164,6 +168,8 @@ public class DatabaseManager {
                 System.out.println("data prenotazione: " + dataPrenotation);
                 System.out.println("durata pernottamento: " + durataPernottamento);
                 System.out.println("prezzo camera: " + price);
+                System.out.println("commento: " + comment);
+                System.out.println("servizi extra: " + serviziExtra);
                 System.out.println("prenotazione annullata?: " + annullata);
                 System.out.println("prenotazione confermata?: " + reservationConfirmed);
             }

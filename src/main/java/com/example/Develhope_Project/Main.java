@@ -5,11 +5,14 @@ import com.example.Develhope_Project.controller.UserInputManager;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.models.Room;
 
+import com.example.Develhope_Project.models.User;
 import com.example.Develhope_Project.repository.Config;
 import com.example.Develhope_Project.repository.DatabaseManager;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.Develhope_Project.models.Room.canCheckIN;
 
@@ -59,9 +62,9 @@ public class Main {
             System.out.println(prenotation.printDetails());
         }
 
-
-
     }
+
+
 
 }
 
