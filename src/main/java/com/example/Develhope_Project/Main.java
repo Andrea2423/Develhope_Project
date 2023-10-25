@@ -1,5 +1,6 @@
 package com.example.Develhope_Project;
 
+<<<<<<< HEAD
 import com.example.Develhope_Project.controller.OwnerInputManager;
 import com.example.Develhope_Project.controller.UserInputManager;
 import com.example.Develhope_Project.models.Prenotation;
@@ -8,10 +9,15 @@ import com.example.Develhope_Project.models.Room;
 import com.example.Develhope_Project.repository.Config;
 import com.example.Develhope_Project.repository.DatabaseManager;
 
+=======
+import com.example.Develhope_Project.models.Prenotation;
+import com.example.Develhope_Project.models.Room;
+
+>>>>>>> 2762f230fbf94bb1c3ca6ac5bda3ac88c61233d8
 
 import java.sql.*;
 
-import static com.example.Develhope_Project.models.Room.canCheckIN;
+
 
 
 public class Main {
@@ -23,7 +29,7 @@ public class Main {
         Room room5 = new Room(5, "Luxury", 2, false, true, 6000);
 
 
-        canCheckIN(room3);
+
 
 
         Room[] rooms = {room1, room2, room3, room4, room5};

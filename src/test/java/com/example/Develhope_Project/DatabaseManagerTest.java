@@ -2,7 +2,6 @@ package com.example.Develhope_Project;
 
 import com.example.Develhope_Project.models.Review;
 import com.example.Develhope_Project.models.User;
-import com.example.Develhope_Project.repository.DatabaseManager;
 
 import org.junit.jupiter.api.Test;
 

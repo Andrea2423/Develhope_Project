@@ -3,54 +3,13 @@ package com.example.Develhope_Project.models;
 import java.util.List;
 
 public class Review {
+
+    private long id;
     private double ratingLocation;
     private double ratingService;
     private double qualityPrice;
     private String commentReview;
 
-
-    public static double totalPointToStructure(Review review) {
-        return review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
-    }
-
-    public double calculateTotalAvarageRatingToStructure() {
-        double total = getRatingLocation() + getRatingService() + getQualityPrice();
-        return total / 3;
-    }
-
-    public static double avarageRatingLocation(List<Review> reviewList) {
-        double total = 0;
-        for (Review review : reviewList) {
-            total += review.getRatingLocation();
-        }
-        return total / reviewList.size();
-    }
-
-    public static double avarageRatingService(List<Review> reviewList) {
-        double total = 0;
-        for (Review review : reviewList) {
-            total += review.getRatingService();
-        }
-        return total / reviewList.size();
-    }
-
-    public static double avarageRatingQualityPrice(List<Review> reviewList) {
-        double total = 0;
-        for (Review review : reviewList) {
-            total += review.getQualityPrice();
-        }
-        return total / reviewList.size();
-    }
-
-    @Override
-    public String toString() {
-        return "Review{" +
-                "ratingLocation: " + ratingLocation +
-                ", ratingService: " + ratingService +
-                ", qualityPrice: " + qualityPrice +
-                ", commentReview: '" + commentReview + '\'' +
-                '}';
-    }
 
     public Review() {
 
@@ -94,6 +53,16 @@ public class Review {
 
     public void setCommentReview(String commentReview) {
         this.commentReview = commentReview;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "ratingLocation: " + ratingLocation +
+                ", ratingService: " + ratingService +
+                ", qualityPrice: " + qualityPrice +
+                ", commentReview: '" + commentReview + '\'' +
+                '}';
     }
 
 }
