@@ -1,14 +1,14 @@
-package com.example.Develhope_Project;
+package com.example.Develhope_Project.service;
 
 import com.example.Develhope_Project.models.Registration;
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-class RegistrationTest {
+class RegistrationServiceTest {
+    RegistrationService registrationService = new RegistrationService();
     Registration registration = new Registration("Andrea",
             "Zora",
             "Zoor",
@@ -20,7 +20,7 @@ class RegistrationTest {
 
     @Test
     public void testRegister() {
-        registration.register();
-        assertEquals("Registrazione completata con successo!", registration.register());
+        registrationService.register();
+        assertEquals("Registrazione completata con successo!", registrationService.register());
     }
 }

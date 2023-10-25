@@ -6,7 +6,7 @@ import com.example.Develhope_Project.models.Room;
 
 import java.sql.*;
 
-import static com.example.Develhope_Project.models.Room.canCheckIN;
+
 
 
 public class Main {
@@ -18,7 +18,7 @@ public class Main {
         Room room5 = new Room(5, "Luxury", 2, false, true, 6000);
 
 
-        canCheckIN(room3);
+
 
 
         Room[] rooms = {room1, room2, room3, room4, room5};
