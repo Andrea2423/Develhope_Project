@@ -1,5 +1,6 @@
 package com.example.Develhope_Project.repository;
 
+
 public class Config {
 
     public static String urlDB = "jdbc:mysql://localhost:3306/";

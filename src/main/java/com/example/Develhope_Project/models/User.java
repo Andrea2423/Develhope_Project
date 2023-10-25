@@ -1,5 +1,7 @@
 package com.example.Develhope_Project.models;
 
+import com.example.Develhope_Project.service.UserService;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -73,19 +75,13 @@ public class User {
         this.paymentMethod = methodOfPayment;
     }
 
-
-    // formatted print date from yyyy mm dd to dd MM yyyy
-    public String getFormattedDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
-        return dateOfBirth.format(formatter);
-    }
-
+    UserService userService = new UserService();
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", birthDate='" + getFormattedDate() + '\'' +
+                ", birthDate='" + userService.getFormattedDate()+ '\'' +
                 ", email='" + email + '\'' +
                 ", telephoneNumber=" + telephoneNumber + '\'' +
                 ", methodOfPayment='" + paymentMethod + '\'' + '}';

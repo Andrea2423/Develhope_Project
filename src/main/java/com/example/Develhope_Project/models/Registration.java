@@ -112,19 +112,4 @@ public class Registration {
                 ", telephoneNumber=" + telephoneNumber +
                 '}';
     }
-
-    public boolean isValidEmail(String email) {
-        isValidEmail = email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        return email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-
-    }
-
-    public String register() {
-        // Verifica che la password e la conferma della password siano uguali
-        if (password.equals(confirmPassword)) {
-            return "Registrazione completata con successo!";
-        } else {
-            return "Le password non corrispondono";
-        }
-    }
 }
