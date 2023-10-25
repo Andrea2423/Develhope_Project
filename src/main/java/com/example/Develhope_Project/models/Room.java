@@ -1,7 +1,17 @@
 package com.example.Develhope_Project.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "Room")
 public class Room {
+
+    @Id
+    @GeneratedValue
+    private int id;
     private int roomNumber; //numero stanza
     private String roomType; //tipologia di stanza
     private int guests;  //numero ospiti
@@ -10,7 +20,13 @@ public class Room {
     boolean clean;   //pulita
 
     public Room() {}
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getGuests() {
         return guests;
     }

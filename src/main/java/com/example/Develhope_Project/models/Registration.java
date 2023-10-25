@@ -1,8 +1,17 @@
 package com.example.Develhope_Project.models;
 
-import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+import java.time.LocalDate;
+@Entity
+@Table(name="Registration")
 public class Registration {
+    @Id
+    @GeneratedValue
+    private int id;
     private String name;
     private String surname;
     private String username;
@@ -25,6 +34,14 @@ public class Registration {
         this.confirmPassword = confirmPassword;
         this.birthDate = birthDate;
         this.telephoneNumber = telephoneNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
