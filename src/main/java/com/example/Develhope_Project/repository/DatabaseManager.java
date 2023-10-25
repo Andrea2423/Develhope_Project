@@ -77,8 +77,9 @@ public class DatabaseManager {
 
     public void insertPrenotation(Prenotation prenotation) {
 
-        String queryInsert = "INSERT INTO prenotation(costumers_names, number_of_people_booked, duration_of_the_booking, price, extra_customer_requests, cancel_the_reservation, reservation_confirmed) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?);";
+        String queryInsert = "INSERT INTO prenotation(costumers_names, number_of_people_booked, duration_of_the_booking, price, extra_customer_requests, client_notify, " +
+                "cancel_the_reservation, reservation_confirmed, print_receipt) " +
+                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Config.NameDBmike, Config.UsernameDBmike, Config.PasswordDBmike);
@@ -90,8 +91,10 @@ public class DatabaseManager {
             preparedStatement.setInt(3, prenotation.getDurataPernottamento());
             preparedStatement.setDouble(4, prenotation.getPrice());
             preparedStatement.setString(5, prenotation.getComment());
-            preparedStatement.setBoolean(6, prenotation.getAnnullata());
-            preparedStatement.setBoolean(7, prenotation.getReservationConfirmed());
+            preparedStatement.setString(6, prenotation.getNotificaCliente());
+            preparedStatement.setBoolean(7, prenotation.getAnnullata());
+            preparedStatement.setBoolean(8, prenotation.getReservationConfirmed());
+            preparedStatement.setString(9, prenotation.getStampaRicevuta());
 
 
             preparedStatement.executeUpdate();
@@ -158,9 +161,11 @@ public class DatabaseManager {
                 int durataPernottamento = resultSet.getInt("duration_of_the_booking");
                 double price = resultSet.getDouble("price");
                 String comment = resultSet.getString("extra_customer_requests");
+                String notificaCliente = resultSet.getString("client_notify");
                 List<String> serviziExtra = Collections.singletonList(resultSet.getString("extra_service"));
                 boolean annullata = resultSet.getBoolean("cancel_the_reservation");
                 boolean reservationConfirmed = resultSet.getBoolean("reservation_confirmed");
+                String stampaRicevuta = resultSet.getString("print_receipt");
 
                 System.out.println("id prenotazione: " + idPrenotation);
                 System.out.println("nomi clienti: " + clientName);
@@ -169,9 +174,11 @@ public class DatabaseManager {
                 System.out.println("durata pernottamento: " + durataPernottamento);
                 System.out.println("prezzo camera: " + price);
                 System.out.println("commento: " + comment);
+                System.out.println("notifica: " + notificaCliente);
                 System.out.println("servizi extra: " + serviziExtra);
                 System.out.println("prenotazione annullata?: " + annullata);
                 System.out.println("prenotazione confermata?: " + reservationConfirmed);
+                System.out.println("stampa ricevuta: " + stampaRicevuta);
             }
         } catch (SQLException e) {
             e.printStackTrace();

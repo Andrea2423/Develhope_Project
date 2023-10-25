@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class UserInputManager {
 
+
     /*
        questo metodo permette all'utente di creare una recensione e poi la inserisce direttamente nella tabella mySQL
        sicuramente da rivedere perchè vorrei inserire delle eccezioni, ma il metodo funziona
@@ -75,17 +76,37 @@ public class UserInputManager {
 
         System.out.print("Is cancelled (true/false): ");
         boolean isCancelled = scanner.nextBoolean();
+        scanner.nextLine();
 
         System.out.print("Is reservation confirmed (true/false): ");
         boolean isReservationConfirmed = scanner.nextBoolean();
+
+        String notificaCliente = scanner.nextLine();
+        System.out.println("Prenotazione confermata a presto!");
+
+        System.out.println("Vuoi stampare la ricevuta? (Si/No)");
+        String risposta = scanner.nextLine();
+
+        if (risposta.equalsIgnoreCase("Sì")) {
+            System.out.println("Ricevuta della prenotazione:");
+            System.out.println("Nome del cliente: " + clientName);
+            System.out.println("Numero di persone: " + numberOfPeople);
+            System.out.println("Durata della prenotazione: " + durationOfStay);
+            System.out.println("Prezzo della prenotazione: " + price);
+
+        } else {
+            System.out.println("Grazie per aver utilizzato il nostro servizio!");
+        }
 
         prenotation.setClientName(clientName);
         prenotation.setNumeroPersone(numberOfPeople);
         prenotation.setDurataPernottamento(durationOfStay);
         prenotation.setPrice(price);
         prenotation.setComment(comment);
+        prenotation.setNotificaCliente(notificaCliente);
         prenotation.setAnnullata(isCancelled);
         prenotation.setReservationConfirmed(isReservationConfirmed);
+        prenotation.setStampaRicevuta(risposta);
 
         databaseManager.insertPrenotation(prenotation);
 
