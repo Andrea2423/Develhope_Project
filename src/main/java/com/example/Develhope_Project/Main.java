@@ -1,10 +1,7 @@
 package com.example.Develhope_Project;
 
-import com.example.Develhope_Project.controller.OwnerInputManager;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.models.Room;
-
-import com.example.Develhope_Project.repository.Config;
 
 
 import java.sql.*;
