@@ -94,6 +94,7 @@ public class Prenotation {
         System.out.println("commento aggiunto: " + comment);
     }
 
+
 }
 
 
