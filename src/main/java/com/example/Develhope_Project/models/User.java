@@ -1,11 +1,20 @@
 package com.example.Develhope_Project.models;
 
 import com.example.Develhope_Project.service.UserService;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Entity
+@Table(name = "User")
 public class User {
+    @Id
+    @GeneratedValue
+    private int id;
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
@@ -26,6 +35,13 @@ public class User {
         this.paymentMethod = paymentMethod;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -76,12 +92,13 @@ public class User {
     }
 
     UserService userService = new UserService();
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", birthDate='" + userService.getFormattedDate()+ '\'' +
+                ", birthDate='" + userService.getFormattedDate() + '\'' +
                 ", email='" + email + '\'' +
                 ", telephoneNumber=" + telephoneNumber + '\'' +
                 ", methodOfPayment='" + paymentMethod + '\'' + '}';

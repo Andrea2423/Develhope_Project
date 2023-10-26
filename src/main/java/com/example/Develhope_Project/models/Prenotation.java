@@ -1,9 +1,18 @@
 package com.example.Develhope_Project.models;
 
 
-//public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+//public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
+@Entity
+@Table(name = "Prenotation")
 public class Prenotation {
+    @Id
+    @GeneratedValue
+    private int id;
     private String clientName;
     private int numeroPersone;
     private double price;
@@ -24,6 +33,14 @@ public class Prenotation {
 
     public Prenotation() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getClientName() {

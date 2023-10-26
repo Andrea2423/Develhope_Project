@@ -1,8 +1,16 @@
 package com.example.Develhope_Project.models;
 
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+import java.util.List;
+@Entity
+@Table(name="Owner")
 public class Owner {
+    @Id
+    @GeneratedValue
     private int id;
     private String nome;
     private String indirizzo;
@@ -11,8 +19,7 @@ public class Owner {
     private List<Hotel> strutture;
     private List<Review> recensioni; //Creare un metodo che restituisce la MEDIA delle recensioni
 
-    public Owner(int id, String nome, String indirizzo, String email, String numeroTelefono, List<Hotel> strutture, List<Review> recensioni) {
-        this.id = id;
+    public Owner( String nome, String indirizzo, String email, String numeroTelefono, List<Hotel> strutture, List<Review> recensioni) {
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.email = email;
