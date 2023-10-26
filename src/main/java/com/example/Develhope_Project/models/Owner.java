@@ -6,11 +6,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.List;
-@Entity
-@Table(name="Owner")
+
 public class Owner {
-    @Id
-    @GeneratedValue
+
     private int id;
     private String nome;
     private String indirizzo;
