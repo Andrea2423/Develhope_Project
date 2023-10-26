@@ -9,8 +9,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReviewServiceTest {
-    private Review review = new Review(5, 5, 5, "Ottimo");
-    private Review review2 = new Review( 5, 5, 5, "Perfetto");
+   // private Review review = new Review(5, 5, 5, "Ottimo");
+   // private Review review2 = new Review( 5, 5, 5, "Perfetto");
 
 //    @Test
 //    public void testTotalPointToStructure() {

@@ -5,11 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="Hotel")
+
 public class Hotel {
-    @Id
-    @GeneratedValue
+
+    private int id;
     private String hotelName;
     private double hotelRating;
     private int hotelFloors;
@@ -18,7 +17,9 @@ public class Hotel {
     private String hotelServices;
     private int hotelCategory;
 
-    public Hotel() {}
+    public Hotel() {
+
+    }
 
     public Hotel(String hotelName, String hotelAddress, int hotelCategory, double hotelRating, int hotelFloors) {
         this.hotelName = hotelName;

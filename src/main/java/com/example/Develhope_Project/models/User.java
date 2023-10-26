@@ -9,11 +9,9 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@Entity
-@Table(name = "User")
+
 public class User {
-    @Id
-    @GeneratedValue
+
     private int id;
     private String name;
     private String surname;
