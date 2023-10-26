@@ -1,10 +1,7 @@
 package com.example.Develhope_Project.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -20,6 +17,28 @@ public class Review {
     private double qualityPrice;
 
     private String commentReview;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+
 
 
     public Review() {
