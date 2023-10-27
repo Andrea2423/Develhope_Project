@@ -2,12 +2,23 @@ package com.example.Develhope_Project.service;
 
 
 import com.example.Develhope_Project.models.Room;
+import com.example.Develhope_Project.repository.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service
 public class RoomService {
+
+    @Autowired
+    RoomRepository roomRepository;
+
+    public void insertRoom(Room room){
+        roomRepository.save(room);
+    }
+
+
 
     ArrayList<Room> rooms = new ArrayList<>();
 

@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RoomController {
+
     @Autowired
-    RoomRepository roomRepository;
+    RoomService roomService;
 
     @PostMapping("/insert-room")
     public String insertRoom(@RequestBody Room room){
-        roomRepository.save(room);
+        roomService.insertRoom(room);
         return "New room inserted";
     }
 }

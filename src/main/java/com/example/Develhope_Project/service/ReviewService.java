@@ -1,12 +1,37 @@
 package com.example.Develhope_Project.service;
 
 import com.example.Develhope_Project.models.Review;
+import com.example.Develhope_Project.models.Room;
+import com.example.Develhope_Project.repository.ReviewRepository;
+import com.example.Develhope_Project.repository.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ReviewService {
+
+    @Autowired
+    ReviewRepository reviewRepository;
+
+    @Autowired
+    RoomRepository roomRepository;
+
+
+    public void insertReview(Review review, int roomID){
+        Room room = roomRepository.findById(roomID).get();
+        review.setRoom(room);
+        reviewRepository.save(review);
+    }
+
+
+    public List<Review>viewAllViews(){
+        return reviewRepository.findAll();
+    }
+
 
 
     /*
