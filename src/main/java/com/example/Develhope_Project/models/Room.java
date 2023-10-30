@@ -1,12 +1,12 @@
 package com.example.Develhope_Project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Room")
 public class Room {
 
     @Id
@@ -16,8 +16,40 @@ public class Room {
     private String roomType; //tipologia di stanza
     private int guests;  //numero ospiti
     private double cost;  //costo stanza
-    boolean available;  //disponibile
-    boolean clean;   //pulita
+    private boolean available;  //disponibile
+    private boolean clean;   //pulita
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<Review> reviewSet;
+
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public boolean isClean() {
+        return clean;
+    }
+
+    public Set<Review> getReviewSet() {
+        return reviewSet;
+    }
+
+    public void setReviewSet(Set<Review> reviewSet) {
+        this.reviewSet = reviewSet;
+    }
+
+
+
 
     public Room() {}
     public int getId() {

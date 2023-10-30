@@ -7,11 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
-@Entity
-@Table(name = "Prenotation")
+
 public class Prenotation {
-    @Id
-    @GeneratedValue
+
     private int id;
     private String clientName;
     private int numeroPersone;

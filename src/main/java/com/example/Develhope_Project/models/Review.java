@@ -1,21 +1,44 @@
 package com.example.Develhope_Project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-import java.util.List;
+import jakarta.persistence.*;
+
+
 @Entity
-@Table(name="Review")
 public class Review {
-@Id
-@GeneratedValue
-    private long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
+
     private double ratingLocation;
+
     private double ratingService;
+
     private double qualityPrice;
+
     private String commentReview;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+
 
 
     public Review() {
@@ -29,13 +52,7 @@ public class Review {
         this.commentReview = commentReview;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
     public double getRatingLocation() {
         return ratingLocation;
     }
@@ -68,14 +85,14 @@ public class Review {
         this.commentReview = commentReview;
     }
 
+
     @Override
     public String toString() {
         return "Review{" +
-                "ratingLocation: " + ratingLocation +
-                ", ratingService: " + ratingService +
-                ", qualityPrice: " + qualityPrice +
-                ", commentReview: '" + commentReview + '\'' +
+                " ratingLocation=" + ratingLocation +
+                ", ratingService=" + ratingService +
+                ", qualityPrice=" + qualityPrice +
+                ", commentReview='" + commentReview + '\'' +
                 '}';
     }
-
 }
