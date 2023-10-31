@@ -1,20 +1,21 @@
 package com.example.Develhope_Project.models;
 
 import com.example.Develhope_Project.service.UserService;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String surname;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
     private String email;
     private String telephoneNumber;
@@ -89,16 +90,17 @@ public class User {
         this.paymentMethod = methodOfPayment;
     }
 
-    UserService userService = new UserService();
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", birthDate='" + userService.getFormattedDate() + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
                 ", email='" + email + '\'' +
-                ", telephoneNumber=" + telephoneNumber + '\'' +
-                ", methodOfPayment='" + paymentMethod + '\'' + '}';
+                ", telephoneNumber='" + telephoneNumber + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                '}';
     }
 }
