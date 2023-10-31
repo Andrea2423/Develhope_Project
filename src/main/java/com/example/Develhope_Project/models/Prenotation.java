@@ -8,8 +8,11 @@ import jakarta.persistence.Table;
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
 
+@Entity
 public class Prenotation {
 
+    @Id
+    @GeneratedValue
     private int id;
     private String clientName;
     private int numeroPersone;
@@ -108,6 +111,7 @@ public class Prenotation {
     public void addComment(String comment) {
         System.out.println("commento aggiunto: " + comment);
     }
+
 
 }
 
