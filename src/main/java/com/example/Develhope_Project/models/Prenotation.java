@@ -112,7 +112,19 @@ public class Prenotation {
         System.out.println("commento aggiunto: " + comment);
     }
 
-
+    @Override
+    public String toString() {
+        return "Prenotation{" +
+                "id=" + id +
+                ", clientName='" + clientName + '\'' +
+                ", numeroPersone=" + numeroPersone +
+                ", price=" + price +
+                ", durataPernottamento=" + durataPernottamento +
+                ", comment='" + comment + '\'' +
+                ", annullata=" + annullata +
+                ", reservationConfirmed=" + reservationConfirmed +
+                '}';
+    }
 }
 
 

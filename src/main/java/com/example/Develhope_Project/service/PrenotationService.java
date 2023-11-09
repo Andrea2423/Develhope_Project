@@ -14,7 +14,7 @@ public class PrenotationService {
     @Autowired
     PrenotationRepository prenotationRepository;
 
-   public void insertPrenotation(Prenotation prenotation) {
+    public void insertPrenotation(Prenotation prenotation) {
        prenotationRepository.save(prenotation);
    }
 
