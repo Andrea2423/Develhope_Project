@@ -21,7 +21,7 @@ public class Room {
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<Review> reviewSet;
+    private List<Review> reviewList;
 
 
     public double getCost() {
@@ -40,12 +40,12 @@ public class Room {
         return clean;
     }
 
-    public Set<Review> getReviewSet() {
-        return reviewSet;
+    public List<Review> getReviewList() {
+        return reviewList;
     }
 
-    public void setReviewSet(Set<Review> reviewSet) {
-        this.reviewSet = reviewSet;
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
 

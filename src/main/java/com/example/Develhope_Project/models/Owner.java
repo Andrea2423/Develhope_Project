@@ -15,17 +15,20 @@ public class Owner {
     private String indirizzo;
     private String email;
     private String numeroTelefono;
+
+    /*
+    Bloccano l'app
+
     private List<Hotel> strutture;
     private List<Review> recensioni; //Creare un metodo che restituisce la MEDIA delle recensioni
 
-    public Owner( String nome, String indirizzo, String email, String numeroTelefono, List<Hotel> strutture, List<Review> recensioni) {
-        this.nome = nome;
-        this.indirizzo = indirizzo;
-        this.email = email;
-        this.numeroTelefono = numeroTelefono;
-        this.strutture = strutture;
-        this.recensioni = recensioni;
+     */
+
+    public Owner(){
+
     }
+
+
 
     public int getId() {
         return id;
@@ -66,21 +69,4 @@ public class Owner {
     public void setNumeroTelefono(String numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
     }
-
-    public List<Hotel> getStrutture() {
-        return strutture;
-    }
-
-    public void setStrutture(List<Hotel> strutture) {
-        this.strutture = strutture;
-    }
-
-    public List<Review> getRecensioni() {
-        return recensioni;
-    }
-
-    public void setRecensioni(List<Review> recensioni) {
-        this.recensioni = recensioni;
-    }
-
 }
