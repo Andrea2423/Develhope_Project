@@ -10,7 +10,6 @@ import java.util.List;
 public class Owner {
     @Id
     @GeneratedValue
-
     private int id;
     private String nome;
     private String indirizzo;
