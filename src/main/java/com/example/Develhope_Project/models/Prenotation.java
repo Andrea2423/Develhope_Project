@@ -1,10 +1,8 @@
 package com.example.Develhope_Project.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
 
@@ -21,6 +19,10 @@ public class Prenotation {
     private String comment;
     private boolean annullata;
     private boolean reservationConfirmed;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Prenotation(String clientName, int numeroPersone, double price, int durataPernottamento, String comment, boolean annullata, boolean reservationConfirmed) {
         this.clientName = clientName;
@@ -98,6 +100,22 @@ public class Prenotation {
 
     public void setReservationConfirmed(boolean reservationConfirmed) {
         this.reservationConfirmed = reservationConfirmed;
+    }
+
+    public boolean isAnnullata() {
+        return annullata;
+    }
+
+    public boolean isReservationConfirmed() {
+        return reservationConfirmed;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String printDetails() {

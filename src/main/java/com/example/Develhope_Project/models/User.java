@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Entity
 public class User {
@@ -13,26 +14,27 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String name;
+
     private String surname;
+
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
+
     private String email;
+
     private String telephoneNumber;
+
     private String paymentMethod;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Prenotation> prenotations;
 
 
     public User() {
     }
 
-    public User(String name, String surname, LocalDate dateOfBirth, String email, String telephoneNumber, String paymentMethod) {
-        this.name = name;
-        this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.telephoneNumber = telephoneNumber;
-        this.paymentMethod = paymentMethod;
-    }
 
     public int getId() {
         return id;
@@ -86,21 +88,15 @@ public class User {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String methodOfPayment) {
-        this.paymentMethod = methodOfPayment;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
+    public List<Prenotation> getPrenotations() {
+        return prenotations;
+    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", email='" + email + '\'' +
-                ", telephoneNumber='" + telephoneNumber + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                '}';
+    public void setPrenotations(List<Prenotation> prenotations) {
+        this.prenotations = prenotations;
     }
 }
