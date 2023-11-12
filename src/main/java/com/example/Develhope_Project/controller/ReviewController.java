@@ -25,6 +25,12 @@ public class ReviewController {
     }
 
 
+    @GetMapping("/view-review-by-id")
+    public Review getReviewByID(@RequestParam int reviewID){
+        return reviewService.getReviewById(reviewID);
+    }
+
+
     @GetMapping("/view-review-by-room")
     public List<Review> reviewList(int roomID) {
         return reviewService.viewAllViewsByRoom(roomID);

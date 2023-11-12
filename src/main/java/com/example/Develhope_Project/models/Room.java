@@ -2,6 +2,8 @@ package com.example.Develhope_Project.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.List;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Room {
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)           // messo perchè mi serviva per il test
     private List<Review> reviewList;
 
 

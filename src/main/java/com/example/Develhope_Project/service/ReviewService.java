@@ -32,6 +32,10 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    public Review getReviewById(int id){
+        return reviewRepository.getById(id);
+    }
+
 
     public List<Review> viewAllViewsByRoom(int RoomID) {
 
