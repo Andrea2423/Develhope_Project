@@ -23,14 +23,38 @@ public class UserController {
         return "New user inserted";
     }
 
+
     @GetMapping("/view-all-user")
     public List<User> viewAllUsers(){
         return userService.viewAllUser();
     }
+
 
     @GetMapping("/view-user-by-id")
     public Optional<User> viewUserByID(@RequestParam int id){
         return userService.viewUserById(id);
     }
 
+
+    @PutMapping("/user-update")
+    public String updateUser(@RequestParam int id, @RequestBody User user){
+
+        userService.updateUser(id,
+                Optional.ofNullable(user.getName()),
+                Optional.ofNullable(user.getSurname()),
+                Optional.of(user.getDateOfBirth()),
+                Optional.ofNullable(user.getEmail()),
+                Optional.ofNullable(user.getTelephoneNumber()),
+                Optional.ofNullable(user.getPaymentMethod()));
+
+        return "User updated";
+    }
+
+
+    @DeleteMapping("/user-delete")
+    public String deleteUser(@RequestParam int id){
+        userService.deleteUser(id);
+
+        return "User with ID " + " deleted";
+    }
 }

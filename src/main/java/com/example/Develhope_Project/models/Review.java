@@ -1,13 +1,17 @@
 package com.example.Develhope_Project.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.Date;
 
 
 @Entity
 public class Review {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private double ratingLocation;
@@ -18,9 +22,19 @@ public class Review {
 
     private String commentReview;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreation;
+
     @ManyToOne
     @JoinColumn(name = "room_id")
+    @JsonIgnore
     private Room room;
+
+
+    public Review() {
+        this.dateCreation = new Date();                 // così inserisce la data ogni volta che creo un oggetto review
+    }
+
 
     public int getId() {
         return id;
@@ -29,29 +43,6 @@ public class Review {
     public void setId(int id) {
         this.id = id;
     }
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-
-
-
-    public Review() {
-
-    }
-
-    public Review(double ratingLocation, double ratingService, double qualityPrice, String commentReview) {
-        this.ratingLocation = ratingLocation;
-        this.ratingService = ratingService;
-        this.qualityPrice = qualityPrice;
-        this.commentReview = commentReview;
-    }
-
 
     public double getRatingLocation() {
         return ratingLocation;
@@ -85,14 +76,19 @@ public class Review {
         this.commentReview = commentReview;
     }
 
+    public Date getDateCreation() {
+        return dateCreation;
+    }
 
-    @Override
-    public String toString() {
-        return "Review{" +
-                " ratingLocation=" + ratingLocation +
-                ", ratingService=" + ratingService +
-                ", qualityPrice=" + qualityPrice +
-                ", commentReview='" + commentReview + '\'' +
-                '}';
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
