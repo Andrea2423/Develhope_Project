@@ -1,9 +1,12 @@
 package com.example.Develhope_Project.models;
 
 
+
 import jakarta.persistence.*;
 
 import java.util.Date;
+
+
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
 
@@ -23,6 +26,10 @@ public class Prenotation {
     private String comment;
     private boolean reservationCancelled;
     private boolean reservationConfirmed;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
 
     @PrePersist
@@ -105,6 +112,7 @@ public class Prenotation {
     public void setReservationConfirmed(boolean reservationConfirmed) {
         this.reservationConfirmed = reservationConfirmed;
     }
+
 }
 
 

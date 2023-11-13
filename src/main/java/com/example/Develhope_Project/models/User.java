@@ -1,37 +1,40 @@
 package com.example.Develhope_Project.models;
 
 import com.example.Develhope_Project.service.UserService;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
-
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String name;
+
     private String surname;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
+
     private String email;
+
     private String telephoneNumber;
+
     private String paymentMethod;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Prenotation> prenotations;
 
 
     public User() {
     }
 
-    public User(String name, String surname, LocalDate dateOfBirth, String email, String telephoneNumber, String paymentMethod) {
-        this.name = name;
-        this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.telephoneNumber = telephoneNumber;
-        this.paymentMethod = paymentMethod;
-    }
 
     public int getId() {
         return id;
@@ -85,20 +88,15 @@ public class User {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String methodOfPayment) {
-        this.paymentMethod = methodOfPayment;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    UserService userService = new UserService();
+    public List<Prenotation> getPrenotations() {
+        return prenotations;
+    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", birthDate='" + userService.getFormattedDate() + '\'' +
-                ", email='" + email + '\'' +
-                ", telephoneNumber=" + telephoneNumber + '\'' +
-                ", methodOfPayment='" + paymentMethod + '\'' + '}';
+    public void setPrenotations(List<Prenotation> prenotations) {
+        this.prenotations = prenotations;
     }
 }
