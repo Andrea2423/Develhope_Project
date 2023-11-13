@@ -1,8 +1,12 @@
 package com.example.Develhope_Project.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+
+import java.util.Date;
+
+
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
 
@@ -12,26 +16,25 @@ public class Prenotation {
     @Id
     @GeneratedValue
     private int id;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date prenotationDate;
     private String clientName;
-    private int numeroPersone;
+    private int numberOfPeopleBooked;
     private double price;
-    private int durataPernottamento;
+    private int overnightStayDuration;
     private String comment;
-    private boolean annullata;
+    private boolean reservationCancelled;
     private boolean reservationConfirmed;
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-    public Prenotation(String clientName, int numeroPersone, double price, int durataPernottamento, String comment, boolean annullata, boolean reservationConfirmed) {
-        this.clientName = clientName;
-        this.numeroPersone = numeroPersone;
-        this.price = price;
-        this.durataPernottamento = durataPernottamento;
-        this.comment = comment;
-        this.annullata = annullata;
-        this.reservationConfirmed = reservationConfirmed;
+
+    @PrePersist
+    protected void onCreate() {
+        prenotationDate = new Date();
     }
 
     public Prenotation() {
@@ -46,6 +49,14 @@ public class Prenotation {
         this.id = id;
     }
 
+    public Date getPrenotationDate() {
+        return prenotationDate;
+    }
+
+    public void setPrenotationDate(Date prenotationDate) {
+        this.prenotationDate = prenotationDate;
+    }
+
     public String getClientName() {
         return clientName;
     }
@@ -54,12 +65,12 @@ public class Prenotation {
         this.clientName = clientName;
     }
 
-    public int getNumeroPersone() {
-        return numeroPersone;
+    public int getNumberOfPeopleBooked() {
+        return numberOfPeopleBooked;
     }
 
-    public void setNumeroPersone(int numeroPersone) {
-        this.numeroPersone = numeroPersone;
+    public void setNumberOfPeopleBooked(int numberOfPeopleBooked) {
+        this.numberOfPeopleBooked = numberOfPeopleBooked;
     }
 
     public double getPrice() {
@@ -70,12 +81,12 @@ public class Prenotation {
         this.price = price;
     }
 
-    public int getDurataPernottamento() {
-        return durataPernottamento;
+    public int getOvernightStayDuration() {
+        return overnightStayDuration;
     }
 
-    public void setDurataPernottamento(int durataPernottamento) {
-        this.durataPernottamento = durataPernottamento;
+    public void setOvernightStayDuration(int overnightStayDuration) {
+        this.overnightStayDuration = overnightStayDuration;
     }
 
     public String getComment() {
@@ -86,50 +97,21 @@ public class Prenotation {
         this.comment = comment;
     }
 
-    public boolean getAnnullata() {
-        return annullata;
+    public boolean isReservationCancelled() {
+        return reservationCancelled;
     }
 
-    public void setAnnullata(boolean annullata) {
-        this.annullata = annullata;
-    }
-
-    public boolean getReservationConfirmed() {
-        return reservationConfirmed;
-    }
-
-    public void setReservationConfirmed(boolean reservationConfirmed) {
-        this.reservationConfirmed = reservationConfirmed;
-    }
-
-    public boolean isAnnullata() {
-        return annullata;
+    public void setReservationCancelled(boolean reservationCancelled) {
+        this.reservationCancelled = reservationCancelled;
     }
 
     public boolean isReservationConfirmed() {
         return reservationConfirmed;
     }
 
-    public User getUser() {
-        return user;
+    public void setReservationConfirmed(boolean reservationConfirmed) {
+        this.reservationConfirmed = reservationConfirmed;
     }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String printDetails() {
-        String result = "Dati personali cliente: " + clientName + "\n" + "numero persone prenotate : " + numeroPersone + "\n" +
-                "durata pernottamento giorni: " + durataPernottamento + "\n" + "scegli il prezzo" + price + "\n" + "Commento: " + comment
-                + "\n" + "vuoi annullare la prenotazione?" + annullata + "\n" + "la prenotazione è confermata? " + reservationConfirmed;
-        return result;
-    }
-
-
-    public void addComment(String comment) {
-        System.out.println("commento aggiunto: " + comment);
-    }
-
 
 }
 
