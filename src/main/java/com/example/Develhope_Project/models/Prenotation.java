@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
-
+import java.util.List;
 
 
 //public record Prenotation(LocalDate data, String nomeCliente, int numeroPersone, LocalTime time, double price, int durataPernottamento, boolean calcolaTotale, String Comment, boolean annullata,  boolean reservationConfirmed ) {
@@ -31,6 +31,13 @@ public class Prenotation {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+    @OneToMany(mappedBy = "prenotation", cascade = CascadeType.ALL)
+    private List<Hotel> hotels;
+
+
+    @OneToMany(mappedBy = "prenotation", cascade = CascadeType.ALL)
+    private List<Room> rooms;
 
 
     @PrePersist
@@ -113,6 +120,31 @@ public class Prenotation {
     public void setReservationConfirmed(boolean reservationConfirmed) {
         this.reservationConfirmed = reservationConfirmed;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Hotel> getHotels() {
+        return hotels;
+    }
+
+    public void setHotels(List<Hotel> hotels) {
+        this.hotels = hotels;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
 
 }
 

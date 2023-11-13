@@ -26,6 +26,16 @@ public class Room {
     @LazyCollection(LazyCollectionOption.FALSE)           // messo perchè mi serviva per il test
     private List<Review> reviewList;
 
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    @JsonIgnore
+    private Hotel hotel;
+
+    @ManyToOne
+    @JoinColumn(name = "prenotation__id")
+    @JsonIgnore
+    private Prenotation prenotation;
+
 
     public double getCost() {
         return cost;
@@ -109,6 +119,25 @@ public class Room {
     public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public Prenotation getPrenotation() {
+        return prenotation;
+    }
+
+    public void setPrenotation(Prenotation prenotation) {
+        this.prenotation = prenotation;
+    }
+
+
+
 
     public Room(int roomNumber, String roomType, int guests, boolean available, boolean clean, double cost) {
         this.roomNumber = roomNumber;
