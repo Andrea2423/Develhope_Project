@@ -3,7 +3,6 @@ package com.example.Develhope_Project.service;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.repository.PrenotationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
