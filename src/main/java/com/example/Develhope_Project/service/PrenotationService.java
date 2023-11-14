@@ -31,6 +31,7 @@ public class PrenotationService {
             throw new IllegalArgumentException("ID della prenotazione non valido");
         }
     }
+
     private List<Prenotation> userList = new ArrayList<>();
     public List<Prenotation> putPrenotationUser(Prenotation prenotation) {
         userList.add(prenotation);
