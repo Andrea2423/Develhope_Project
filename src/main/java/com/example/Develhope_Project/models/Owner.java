@@ -1,9 +1,6 @@
 package com.example.Develhope_Project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 @Entity
@@ -15,6 +12,8 @@ public class Owner {
     private String indirizzo;
     private String email;
     private String numeroTelefono;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<Hotel> hotels;
 
     /*
     Bloccano l'app

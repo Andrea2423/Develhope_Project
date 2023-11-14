@@ -1,8 +1,9 @@
 package com.example.Develhope_Project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 
@@ -12,23 +13,45 @@ public class Hotel {
 
     private int id;
     private String hotelName;
-    private double hotelRating;
+
     private int hotelFloors;
+
     private String hotelAddress;
+
     private String hotelInfo;
+
     private String hotelServices;
+
     private int hotelCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    @JsonIgnore
+    private Owner owner;
+
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<Room> rooms;
+
+    @ManyToOne
+    @JoinColumn(name = "prenotation_id")
+    @JsonIgnore
+    private Prenotation prenotation;
+
 
     public Hotel(int hotelId, String s) {
 
     }
 
-    public Hotel(String hotelName, String hotelAddress, int hotelCategory, double hotelRating, int hotelFloors) {
-        this.hotelName = hotelName;
-        this.hotelAddress = hotelAddress;
-        this.hotelCategory = hotelCategory;
-        this.hotelRating = hotelRating;
-        this.hotelFloors = hotelFloors;
+    public Hotel(){
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getHotelName() {
@@ -37,22 +60,6 @@ public class Hotel {
 
     public void setHotelName(String hotelName) {
         this.hotelName = hotelName;
-    }
-
-    public int getHotelCategory() {
-        return hotelCategory;
-    }
-
-    public void setHotelCategory(int hotelCategory) {
-        this.hotelCategory = hotelCategory;
-    }
-
-    public double getHotelRating() {
-        return hotelRating;
-    }
-
-    public void setHotelRating(double hotelRating) {
-        this.hotelRating = hotelRating;
     }
 
     public int getHotelFloors() {
@@ -87,13 +94,35 @@ public class Hotel {
         this.hotelServices = hotelServices;
     }
 
-    public String toString() {
-        return "Hotel: " + hotelName +
-                "\nStelle: " + hotelCategory + "✩" +
-                "\nValutazione hotel: " + hotelRating +
-                "\nPiani: " + hotelFloors +
-                "\nIndirizzo: " + hotelAddress +
-                "\n\nInfo: " + hotelInfo +
-                "\nServizi: " + hotelServices;
+    public int getHotelCategory() {
+        return hotelCategory;
+    }
+
+    public void setHotelCategory(int hotelCategory) {
+        this.hotelCategory = hotelCategory;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public Prenotation getPrenotation() {
+        return prenotation;
+    }
+
+    public void setPrenotation(Prenotation prenotation) {
+        this.prenotation = prenotation;
     }
 }
