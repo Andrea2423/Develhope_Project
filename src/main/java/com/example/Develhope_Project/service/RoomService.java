@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RoomService {
@@ -14,14 +15,20 @@ public class RoomService {
     @Autowired
     RoomRepository roomRepository;
 
-    public void insertRoom(Room room){
+    public List<Room> viewAllRoom() {
+        return roomRepository.findAll();
+    }
+
+    public void insertRoom(Room room) {
         roomRepository.save(room);
     }
 
+    public void deleteRoom(int id){
+        roomRepository.deleteById(id);
+    }
 
 
     ArrayList<Room> rooms = new ArrayList<>();
-
 
 
 //    public void addRoom(int roomNumber, String roomType, int guest, boolean available, boolean clean, double cost) {
@@ -33,7 +40,8 @@ public class RoomService {
     public void searchRoom(Room roomNumber) {   //cerca stanza
         for (Room room : rooms) {
             if (roomNumber.getRoomNumber() == room.getRoomNumber()) {
-                System.out.println(room.toString());;
+                System.out.println(room.toString());
+                ;
             }
         }
         System.out.println("La stanza non esiste.");
