@@ -3,6 +3,7 @@ package com.example.Develhope_Project.controller;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.service.PrenotationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -22,6 +23,12 @@ public class PrenotationController {
     @GetMapping("/view-prenotation")
     public List<Prenotation> viewPrenotation() {
         return prenotationService.viewPrenotation();
+    }
+
+    @GetMapping("/prenotations/{id}")
+    public ResponseEntity<Prenotation> getPrenotationById(@PathVariable int id) {
+        Prenotation prenotation = prenotationService.getPrenotationById(id);
+        return ResponseEntity.ok(prenotation);
     }
 
     @PutMapping("/put-prenotation-user")

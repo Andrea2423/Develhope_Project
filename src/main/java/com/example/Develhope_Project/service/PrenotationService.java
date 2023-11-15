@@ -3,11 +3,11 @@ package com.example.Develhope_Project.service;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.repository.PrenotationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PrenotationService {
@@ -22,6 +22,16 @@ public class PrenotationService {
     public List<Prenotation> viewPrenotation() {
         return prenotationRepository.findAll();
     }
+
+    public Prenotation getPrenotationById(int id) {
+        Optional<Prenotation> prenotation = prenotationRepository.findById(id);
+        if (prenotation.isPresent()) {
+            return prenotation.get();
+        } else {
+            throw new IllegalArgumentException("ID della prenotazione non valido");
+        }
+    }
+
     private List<Prenotation> userList = new ArrayList<>();
     public List<Prenotation> putPrenotationUser(Prenotation prenotation) {
         userList.add(prenotation);
