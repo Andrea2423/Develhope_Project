@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RoomController {
@@ -31,6 +32,19 @@ public class RoomController {
         return "Room deleted.";
     }
 
-    //fare metodo crud PutMapping
+    @PutMapping("/update")
+    public String updateReview(@RequestParam int id, @RequestBody Room room) {
+
+        roomService.updateRoom(id,
+                Optional.of(room.getRoomNumber()),
+                Optional.ofNullable(room.getRoomType()),
+                Optional.of(room.getGuests()),
+                Optional.of(room.getCost()),
+                Optional.of(room.getavailable()),
+                Optional.of(room.getIsClean()));
+
+        return "Room updated";
+
+    }
 
 }
