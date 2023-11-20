@@ -17,6 +17,11 @@ public class RoomService {
     @Autowired
     RoomRepository roomRepository;
 
+    public Room viewRoom(int id) {
+        Optional<Room> optionalRoom = roomRepository.findById(id);
+        return optionalRoom.orElse(null);
+    }
+
     public List<Room> viewAllRoom() {
         return roomRepository.findAll();
     }
