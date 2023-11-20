@@ -7,12 +7,8 @@ import com.example.Develhope_Project.repository.RoomRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ReviewService {
@@ -24,123 +20,124 @@ public class ReviewService {
     RoomRepository roomRepository;
 
 
-    public void insertReview(int roomID, Review review) {
+    public Review insertReview(int roomID, Review review) throws Exception {
 
-        Room room = roomRepository.findById(roomID).get();
-        review.setRoom(room);
+        if (roomRepository.findById(roomID).isPresent()) {
+            Room room = roomRepository.findById(roomID).orElse(null);
 
-        reviewRepository.save(review);
+            review.setRoom(room);
+
+        } else {
+            throw new Exception(String.format("Room with ID %s not exist", roomID));
+        }
+
+        return reviewRepository.save(review);
     }
 
-    public Review getReviewById(int id){
-        return reviewRepository.getById(id);
+
+    public List<Review> viewAllViewsByRoom(int roomID) throws Exception {
+
+        if (roomRepository.findById(roomID).isPresent()) {
+            Room room = roomRepository.findById(roomID).orElse(null);
+            List<Review> reviews;
+            reviews = room.getReviewList();
+
+            return reviews;
+
+        } else {
+            throw new Exception(String.format("Room with ID %s not exist", roomID));
+        }
     }
 
 
-    public List<Review> viewAllViewsByRoom(int RoomID) {
+    public Review updateReview(int id, Review updateReview) throws Exception {
 
-        Room room = roomRepository.findById(RoomID).orElse(null);
+
+        if (reviewRepository.findById(id).isPresent()) {
+
+            Review review = reviewRepository.findById(id).get();
+
+            if (Objects.nonNull(updateReview.getRatingLocation())) {
+                review.setRatingLocation(updateReview.getRatingLocation());
+            }
+
+            if (Objects.nonNull(updateReview.getRatingService())) {
+                review.setRatingService(updateReview.getRatingService());
+            }
+
+            if (Objects.nonNull(updateReview.getQualityPrice())) {
+                review.setQualityPrice(updateReview.getQualityPrice());
+            }
+
+            if (Objects.nonNull(updateReview.getCommentReview())) {
+                review.setCommentReview(updateReview.getCommentReview());
+            }
+            return reviewRepository.save(review);
+        } else {
+            throw new Exception(String.format("Review with ID %s not exist"));
+        }
+
+    }
+
+
+    public void deleteReview(int roomID, int id) throws Exception{
+
+        if (roomRepository.findById(roomID).isPresent()){
+
+            Room room = roomRepository.findById(roomID).get();
+
+            if (room != null) {
+                List<Review> reviews = room.getReviewList();
+                Review reviewRemove = null;
+
+                for (Review review : reviews) {
+                    if (review.getId() == id) {
+                        reviewRemove = review;
+                        break;
+                    }
+                }
+
+                if (reviewRemove != null) {
+                    reviews.remove(reviewRemove);
+                    roomRepository.save(room);
+                }
+
+            }
+        } else
+            throw new Exception(String.format("Room with ID %s not found", roomID));
+
+    }
+
+
+
+    public Map<String, Double> AVGRating(int roomId) throws IllegalArgumentException{
+
+        Room room = roomRepository.findById(roomId).orElse(null);
 
         if (room != null) {
+
             List<Review> reviews = room.getReviewList();
-            return reviews;
+            double totalLocation = 0;
+            double totalService = 0;
+            double totalQualityPrice = 0;
+
+            for (Review review : reviews) {
+                totalLocation += review.getRatingLocation();
+                totalService += review.getRatingService();
+                totalQualityPrice += review.getQualityPrice();
+            }
+
+            Map<String, Double> avgRating = new HashMap<>();
+
+            avgRating.put("avrRatingLocation", totalLocation / reviews.size());
+            avgRating.put("avgRatingService", totalService / reviews.size());
+            avgRating.put("avgQualityPrice", totalQualityPrice / reviews.size());
+
+            return avgRating;
+
         } else
-            return null;
+            throw new IllegalArgumentException(String.format("Room with ID %s not found"));
     }
 
 
-    @Transactional
-    public void updateReview(int id,
-                             Optional<Double> ratingLocation,
-                             Optional<Double> ratingService,
-                             Optional<Double> qualityPrice,
-                             Optional<String> commentReview) {
-
-        Review review = reviewRepository.getById(id);
-
-        if (review != null) {
-            ratingLocation.ifPresent(review::setRatingLocation);
-            ratingService.ifPresent(review::setRatingService);
-            qualityPrice.ifPresent(review::setQualityPrice);
-            commentReview.ifPresent(review::setCommentReview);
-
-            reviewRepository.updateReview(id,
-                    review.getRatingLocation(),
-                    review.getRatingService(),
-                    review.getQualityPrice(),
-                    review.getCommentReview());
-        }
-    }
-
-
-    public void deleteReview(int id) {
-        reviewRepository.deleteById(id);
-    }
-
-
-    /*
-    in questa lista poi passeranno le recensioni che verranno richiestie
-    con le chiamate API e che riguardano la medesima struttura
-
-    poi farò un metodo per prendere la recensione ricercata e così potrà calcolare
-    e seguire i metodi sulla recensione richiesta
-     */
-    private List<Review> reviewList = new ArrayList<>();
-
-    public double avarageRatingLocation(List<Review> reviewList) {
-        double total = 0;
-        for (Review review1 : reviewList) {
-            total += review1.getRatingLocation();
-        }
-        return total / reviewList.size();
-    }
-
-    public double averageRatingService(List<Review> reviewList) {
-        double total = 0;
-        for (Review review : reviewList) {
-            total += review.getRatingService();
-        }
-        return total / reviewList.size();
-    }
-
-    public double averageRatingQualityPrice(List<Review> reviewList) {
-        double total = 0;
-        for (Review review : reviewList) {
-            total += review.getQualityPrice();
-        }
-        return total / reviewList.size();
-    }
-
-    public double totalAverageRatingToStructure(List<Review> reviewList) {
-        double total = 0;
-        for (Review review : reviewList) {
-            total += review.getRatingLocation() + review.getRatingService() + review.getQualityPrice();
-        }
-        return total / 3;
-    }
-
-    public String showReview(List<Review> reviewList) {
-        String result = "";
-        for (Review review : reviewList) {
-            result = review.getCommentReview();
-        }
-        return result;
-    }
-
-
-    public ReviewService() {
-
-    }
-
-    public ReviewService(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
 }
