@@ -3,11 +3,13 @@ package com.example.Develhope_Project.service;
 
 import com.example.Develhope_Project.models.Room;
 import com.example.Develhope_Project.repository.RoomRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomService {
@@ -26,6 +28,37 @@ public class RoomService {
     public void deleteRoom(int id){
         roomRepository.deleteById(id);
     }
+
+    @Transactional
+    public void updateRoom(int id,
+                           Optional<Integer> roomNumber,
+                           Optional<String> roomType,
+                           Optional<Integer> guests,
+                           Optional<Double> cost,
+                           Optional<Boolean> available,
+                           Optional<Boolean> clean) {
+
+        Room room = roomRepository.getById(id);
+
+        if (room != null) {
+            roomNumber.ifPresent(room::setRoomNumber);
+            roomType.ifPresent(room::setRoomType);
+            guests.ifPresent(room::setGuests);
+            cost.ifPresent(room::setCost);
+            available.ifPresent(room::setAvailable);
+            clean.ifPresent(room::setClean);
+
+
+            roomRepository.updateRoom(id,
+                    room.getRoomNumber(),
+                    room.getRoomType(),
+                    room.getGuests(),
+                    room.getCost(),
+                    room.getavailable(),
+                    room.getIsClean());
+        }
+    }
+
 
 
     ArrayList<Room> rooms = new ArrayList<>();
