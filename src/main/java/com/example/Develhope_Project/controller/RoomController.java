@@ -10,30 +10,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/room")
 public class RoomController {
 
     @Autowired
     RoomService roomService;
 
-    @GetMapping("view-all-rooms")
+    @GetMapping("view/{id}")
+    public Room viewRoom(@PathVariable int id) {
+        return roomService.viewRoom(id);
+    }
+
+    @GetMapping("view")
     public List<Room> viewAllRooms() {
         return roomService.viewAllRoom();
     }
 
-    @PostMapping("/insert-room")
+    @PostMapping("/insert")
     public String insertRoom(@RequestBody Room room) {
         roomService.insertRoom(room);
         return "New room inserted";
     }
 
-    @DeleteMapping("/delete-room-byid")
-    public String deleteRoom(@RequestParam int id){
+    @DeleteMapping("/delete/{id}")
+    public String deleteRoom(@PathVariable int id){
         roomService.deleteRoom(id);
         return "Room deleted.";
     }
 
-    @PutMapping("/update")
-    public String updateReview(@RequestParam int id, @RequestBody Room room) {
+    @PutMapping("/update/{id}")
+    public String updateReview(@PathVariable int id, @RequestBody Room room) {
 
         roomService.updateRoom(id,
                 Optional.of(room.getRoomNumber()),
