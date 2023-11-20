@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/review")
 public class ReviewController {
 
 
@@ -19,27 +20,21 @@ public class ReviewController {
     ReviewService reviewService;
 
 
-    @PostMapping("/insert-new-review")
-    public String insertNewReview(@RequestBody Review review, @RequestParam int roomID) {
+    @PostMapping("/insert/{roomID}")
+    public String insertNewReview(@RequestBody Review review, @PathVariable int roomID) {
         reviewService.insertReview(roomID, review);
         return "New review inserted";
     }
 
 
-    @GetMapping("/view-review-by-id")
-    public Review getReviewByID(@RequestParam int reviewID){
-        return reviewService.getReviewById(reviewID);
-    }
-
-
-    @GetMapping("/view-review-by-room")
-    public List<Review> reviewList(int roomID) {
+    @GetMapping("/view/{roomID}")
+    public List<Review> reviewList(@PathVariable int roomID) {
         return reviewService.viewAllViewsByRoom(roomID);
     }
 
 
-    @PutMapping("/review-update")
-    public String updateReview(@RequestParam int id, @RequestBody Review review) {
+    @PutMapping("/update/{id}")
+    public String updateReview(@PathVariable int id, @RequestBody Review review) {
 
         reviewService.updateReview(id,
                 Optional.of(review.getRatingLocation()),
@@ -51,8 +46,8 @@ public class ReviewController {
     }
 
 
-    @DeleteMapping("/review-delete")
-    public String deleteReview(@RequestParam int id) {
+    @DeleteMapping("/delete/{id}")
+    public String deleteReview(@PathVariable int id) {
         reviewService.deleteReview(id);
 
         return "Review with ID " + id + " deleted";
