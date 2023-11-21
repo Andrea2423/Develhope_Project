@@ -32,6 +32,7 @@ public class UserService {
     public Optional<User> viewUserById(int id){
         return userRepository.findById(id);
     }
+
     @Transactional
     public void updateUser(int id,
                            Optional<String> name,
