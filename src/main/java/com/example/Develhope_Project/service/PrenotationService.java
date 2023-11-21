@@ -42,6 +42,10 @@ public class PrenotationService {
         prenotationRepository.delete(prenotation);
         return prenotationRepository.findAll();
     }
+
+    public Prenotation getPrenotationById2(int prenotationId) {
+        return prenotationRepository.findById(prenotationId).orElse(null);
+    }
 }
 
 

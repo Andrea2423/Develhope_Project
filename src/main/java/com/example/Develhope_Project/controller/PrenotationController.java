@@ -1,8 +1,10 @@
 package com.example.Develhope_Project.controller;
 
+import com.example.Develhope_Project.DTO.PrenotationDTO;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.service.PrenotationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +31,18 @@ public class PrenotationController {
     public ResponseEntity<Prenotation> getPrenotationById(@PathVariable int id) {
         Prenotation prenotation = prenotationService.getPrenotationById(id);
         return ResponseEntity.ok(prenotation);
+    }
+
+    @GetMapping(value = "/api/prenotations/{prenotationId}")
+        public ResponseEntity<PrenotationDTO> getPrenotationByID(@PathVariable int prenotationId) {
+        Prenotation prenotation = prenotationService.getPrenotationById2(prenotationId);
+
+        if (prenotation != null) {
+            PrenotationDTO prenotationDTO = PrenotationDTO.fromPrenotation(prenotation);
+            return new ResponseEntity<>(prenotationDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/put-prenotation-user")
