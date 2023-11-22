@@ -1,14 +1,12 @@
 package com.example.Develhope_Project.controller;
 
 import com.example.Develhope_Project.models.Review;
-import com.example.Develhope_Project.models.Room;
-import com.example.Develhope_Project.repository.ReviewRepository;
-import com.example.Develhope_Project.repository.RoomRepository;
 import com.example.Develhope_Project.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,36 +19,64 @@ public class ReviewController {
 
 
     @PostMapping("/insert/{roomID}")
-    public String insertNewReview(@RequestBody Review review, @PathVariable int roomID) {
-        reviewService.insertReview(roomID, review);
-        return "New review inserted";
+    public ResponseEntity insertNewReview(@RequestBody Review review, @PathVariable int roomID) {
+
+        try{
+            return ResponseEntity.ok(reviewService.insertReview(roomID, review));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 
     @GetMapping("/view/{roomID}")
-    public List<Review> reviewList(@PathVariable int roomID) {
-        return reviewService.viewAllViewsByRoom(roomID);
+    public ResponseEntity reviewList(@PathVariable int roomID) {
+
+        try {
+            return ResponseEntity.ok(reviewService.viewAllViewsByRoom(roomID));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 
     @PutMapping("/update/{id}")
-    public String updateReview(@PathVariable int id, @RequestBody Review review) {
+    public ResponseEntity updateReview(@PathVariable int id, @RequestBody Review review) {
 
-        reviewService.updateReview(id,
-                Optional.of(review.getRatingLocation()),
-                Optional.of(review.getRatingService()),
-                Optional.of(review.getQualityPrice()),
-                Optional.ofNullable(review.getCommentReview()));
+        try {
+            return ResponseEntity.ok(reviewService.updateReview(id,
+                    review));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
 
-        return "Review updated";
+
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteReview(@PathVariable int id) {
-        reviewService.deleteReview(id);
+    @DeleteMapping("/delete/{roomID}/{id}")
+    public ResponseEntity deleteReview(@PathVariable int roomID, @PathVariable int id) throws Exception{
 
-        return "Review with ID " + id + " deleted";
+        try {
+            reviewService.deleteReview(roomID, id);
+
+            return ResponseEntity.ok(String.format("Review with ID %s deleted", id));
+        } catch (IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
+    }
+
+
+
+    @GetMapping("/avg/{roomID}")
+    public ResponseEntity avgRoom(@PathVariable int roomID){
+
+        try {
+            return ResponseEntity.ok(reviewService.AVGRating(roomID));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 }
