@@ -16,29 +16,29 @@ public class RoomController {
     @Autowired
     RoomService roomService;
 
-    @GetMapping("view/{id}")
+    @GetMapping("/{id}")
     public Room viewRoom(@PathVariable int id) {
         return roomService.viewRoom(id);
     }
 
-    @GetMapping("view")
+    @GetMapping
     public List<Room> viewAllRooms() {
         return roomService.viewAllRoom();
     }
 
-    @PostMapping("/insert")
+    @PostMapping
     public String insertRoom(@RequestBody Room room) {
         roomService.insertRoom(room);
         return "New room inserted";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteRoom(@PathVariable int id){
         roomService.deleteRoom(id);
         return "Room deleted.";
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public String updateReview(@PathVariable int id, @RequestBody Room room) {
 
         roomService.updateRoom(id,
