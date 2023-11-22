@@ -11,33 +11,34 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
 
-    @PostMapping("/insert-user")
+    @PostMapping
     public String insertUser(@RequestBody User user){
         userService.insertUser(user);
         return "New user inserted";
     }
 
 
-    @GetMapping("/view-all-user")
+    @GetMapping
     public List<User> viewAllUsers(){
         return userService.viewAllUser();
     }
 
 
-    @GetMapping("/view-user-by-id")
-    public Optional<User> viewUserByID(@RequestParam int id){
+    @GetMapping("/{id}")
+    public Optional<User> viewUserByID(@PathVariable int id){
         return userService.viewUserById(id);
     }
 
 
-    @PutMapping("/user-update")
-    public String updateUser(@RequestParam int id, @RequestBody User user){
+    @PutMapping("/{id}")
+    public String updateUser(@PathVariable int id, @RequestBody User user){
 
         userService.updateUser(id,
                 Optional.ofNullable(user.getName()),
@@ -51,8 +52,8 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/user-delete")
-    public String deleteUser(@RequestParam int id){
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable int id){
         userService.deleteUser(id);
 
         return "User with ID " + " deleted";

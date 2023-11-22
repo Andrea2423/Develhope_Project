@@ -18,7 +18,7 @@ public class ReviewController {
     ReviewService reviewService;
 
 
-    @PostMapping("/insert/{roomID}")
+    @PostMapping("/{roomID}")
     public ResponseEntity insertNewReview(@RequestBody Review review, @PathVariable int roomID) {
 
         try{
@@ -29,7 +29,7 @@ public class ReviewController {
     }
 
 
-    @GetMapping("/view/{roomID}")
+    @GetMapping("/{roomID}")
     public ResponseEntity reviewList(@PathVariable int roomID) {
 
         try {
@@ -40,7 +40,7 @@ public class ReviewController {
     }
 
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity updateReview(@PathVariable int id, @RequestBody Review review) {
 
         try {
@@ -54,7 +54,7 @@ public class ReviewController {
     }
 
 
-    @DeleteMapping("/delete/{roomID}/{id}")
+    @DeleteMapping("/{roomID}/{id}")
     public ResponseEntity deleteReview(@PathVariable int roomID, @PathVariable int id) throws Exception{
 
         try {
