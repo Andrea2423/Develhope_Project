@@ -1,7 +1,6 @@
 package com.example.Develhope_Project.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
