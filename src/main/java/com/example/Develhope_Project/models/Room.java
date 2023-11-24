@@ -23,7 +23,6 @@ public class Room {
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    @LazyCollection(LazyCollectionOption.FALSE)           // messo perchè mi serviva per il test
     private List<Review> reviewList;
 
     @ManyToOne

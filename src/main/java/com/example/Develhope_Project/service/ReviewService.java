@@ -74,40 +74,45 @@ public class ReviewService {
             }
             return reviewRepository.save(review);
         } else {
-            throw new Exception(String.format("Review with ID %s not exist"));
+            throw new Exception(String.format("Review with ID %s not found", id));
+        }
+
+    }
+
+    @Transactional
+    public void deleteReview(int id){
+        try {
+            reviewRepository.deleteById(id);
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
     }
 
 
-    public void deleteReview(int roomID, int id) throws Exception{
+    /*
+    public void deleteReview(int id) throws Exception{
+        Optional<Review> optionalReview = reviewRepository.findById(id);
 
-        if (roomRepository.findById(roomID).isPresent()){
+        if (optionalReview.isPresent()) {
 
-            Room room = roomRepository.findById(roomID).get();
+            Review review = optionalReview.get();
+            reviewRepository.deleteById(id);
+        }
+        else {
+            throw new Exception(String.format("Review with ID %s not found", id));
+        }
 
-            if (room != null) {
-                List<Review> reviews = room.getReviewList();
-                Review reviewRemove = null;
+       // if (reviewRepository.findById(id).isPresent()){
+        //
+       //     reviewRepository.deleteById(id);
+       // } else
 
-                for (Review review : reviews) {
-                    if (review.getId() == id) {
-                        reviewRemove = review;
-                        break;
-                    }
-                }
-
-                if (reviewRemove != null) {
-                    reviews.remove(reviewRemove);
-                    roomRepository.save(room);
-                }
-
-            }
-        } else
-            throw new Exception(String.format("Room with ID %s not found", roomID));
 
     }
 
+
+     */
 
 
     public Map<String, Double> AVGRating(int roomId) throws IllegalArgumentException{
@@ -136,7 +141,7 @@ public class ReviewService {
             return avgRating;
 
         } else
-            throw new IllegalArgumentException(String.format("Room with ID %s not found"));
+            throw new IllegalArgumentException(String.format("Room with ID %s not found", roomId));
     }
 
 

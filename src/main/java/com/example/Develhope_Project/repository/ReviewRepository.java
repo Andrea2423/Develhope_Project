@@ -10,15 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    @Modifying
-    @Query("UPDATE Review r SET r.ratingLocation = :ratingLocation, " +
-            "r.ratingService = :ratingService, " +
-            "r.qualityPrice = :qualityPrice, " +
-            "r.commentReview = :commentReview " +
-            "WHERE r.id = :id")
-    void updateReview(@Param("id") int id,
-                      @Param("ratingLocation") double ratingLocation,
-                      @Param("ratingService") double ratingService,
-                      @Param("qualityPrice") double qualityPrice,
-                      @Param("commentReview") String commentReview);
+    //@Modifying
+    //@Query("UPDATE Review r SET r.ratingLocation = :ratingLocation, " +
+    //        "r.ratingService = :ratingService, " +
+    //        "r.qualityPrice = :qualityPrice, " +
+    //        "r.commentReview = :commentReview " +
+    //        "WHERE r.id = :id")
+    //void updateReview(@Param("id") int id,
+    //                  @Param("ratingLocation") double ratingLocation,
+    //                  @Param("ratingService") double ratingService,
+    //                  @Param("qualityPrice") double qualityPrice,
+    //                  @Param("commentReview") String commentReview);
 }
