@@ -54,17 +54,12 @@ public class ReviewController {
     }
 
 
-    @DeleteMapping("/{roomID}/{id}")
-    public ResponseEntity deleteReview(@PathVariable int roomID, @PathVariable int id) throws Exception{
+    @DeleteMapping("/{id}")
+    public String deleteReview(@PathVariable int id) {
 
-        try {
-            reviewService.deleteReview(roomID, id);
+        reviewService.deleteReview(id);
 
-            return ResponseEntity.ok(String.format("Review with ID %s deleted", id));
-        } catch (IllegalArgumentException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-
+        return String.format("Review with ID %s deleted ", id);
     }
 
 
