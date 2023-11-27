@@ -57,15 +57,15 @@ public class ReviewService {
 
             Review review = reviewRepository.findById(id).get();
 
-            if (Objects.nonNull(updateReview.getRatingLocation())) {
+            if (updateReview.getRatingLocation() != 0) {
                 review.setRatingLocation(updateReview.getRatingLocation());
             }
 
-            if (Objects.nonNull(updateReview.getRatingService())) {
+            if (updateReview.getRatingService() != 0) {
                 review.setRatingService(updateReview.getRatingService());
             }
 
-            if (Objects.nonNull(updateReview.getQualityPrice())) {
+            if (updateReview.getQualityPrice() != 0) {
                 review.setQualityPrice(updateReview.getQualityPrice());
             }
 
