@@ -115,7 +115,7 @@ public class ReviewService {
      */
 
 
-    public Map<String, Double> AVGRating(int roomId) throws IllegalArgumentException{
+    public Map<String, Double> AVGRating(int roomId) throws Exception{
 
         Room room = roomRepository.findById(roomId).orElse(null);
 
@@ -141,7 +141,7 @@ public class ReviewService {
             return avgRating;
 
         } else
-            throw new IllegalArgumentException(String.format("Room with ID %s not found", roomId));
+            throw new Exception(String.format("Room with ID %s not found", roomId));
     }
 
 
