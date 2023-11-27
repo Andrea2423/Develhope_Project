@@ -22,7 +22,7 @@ public class Hotel {
 
     private String hotelServices;
 
-    private int hotelCategory;
+
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -30,6 +30,7 @@ public class Hotel {
     private Owner owner;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Room> rooms;
 
     @ManyToOne
@@ -94,13 +95,6 @@ public class Hotel {
         this.hotelServices = hotelServices;
     }
 
-    public int getHotelCategory() {
-        return hotelCategory;
-    }
-
-    public void setHotelCategory(int hotelCategory) {
-        this.hotelCategory = hotelCategory;
-    }
 
     public Owner getOwner() {
         return owner;
