@@ -2,9 +2,12 @@ package com.example.Develhope_Project.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -18,35 +21,43 @@ public class Prenotation {
     @GeneratedValue
     private int id;
 
+
     @Temporal(TemporalType.TIMESTAMP)
-    private Date prenotationDate;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    private LocalDateTime prenotationDate;
+
     private String clientName;
+
     private int numberOfPeopleBooked;
+
     private double price;
-    private int overnightStayDuration;
-    private String comment;
-    private boolean reservationCancelled;
-    private boolean reservationConfirmed;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate toStart;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate theEnd;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "prenotation", cascade = CascadeType.ALL)
-    private List<Hotel> hotels;
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    @JsonIgnore
+    private Hotel hotel;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    @JsonIgnore
+    private Room rooms;
 
 
-    @OneToMany(mappedBy = "prenotation", cascade = CascadeType.ALL)
-    private List<Room> rooms;
 
-
-    @PrePersist
-    protected void onCreate() {
-        prenotationDate = new Date();
-    }
 
     public Prenotation() {
-
+        this.prenotationDate = LocalDateTime.now();
     }
 
     public int getId() {
@@ -57,11 +68,11 @@ public class Prenotation {
         this.id = id;
     }
 
-    public Date getPrenotationDate() {
+    public LocalDateTime getPrenotationDate() {
         return prenotationDate;
     }
 
-    public void setPrenotationDate(Date prenotationDate) {
+    public void setPrenotationDate(LocalDateTime prenotationDate) {
         this.prenotationDate = prenotationDate;
     }
 
@@ -89,37 +100,7 @@ public class Prenotation {
         this.price = price;
     }
 
-    public int getOvernightStayDuration() {
-        return overnightStayDuration;
-    }
 
-    public void setOvernightStayDuration(int overnightStayDuration) {
-        this.overnightStayDuration = overnightStayDuration;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public boolean isReservationCancelled() {
-        return reservationCancelled;
-    }
-
-    public void setReservationCancelled(boolean reservationCancelled) {
-        this.reservationCancelled = reservationCancelled;
-    }
-
-    public boolean isReservationConfirmed() {
-        return reservationConfirmed;
-    }
-
-    public void setReservationConfirmed(boolean reservationConfirmed) {
-        this.reservationConfirmed = reservationConfirmed;
-    }
 
     public User getUser() {
         return user;
@@ -129,23 +110,37 @@ public class Prenotation {
         this.user = user;
     }
 
-    public List<Hotel> getHotels() {
-        return hotels;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotels(List<Hotel> hotels) {
-        this.hotels = hotels;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
-    public List<Room> getRooms() {
+    public Room getRooms() {
         return rooms;
     }
 
-    public void setRooms(List<Room> rooms) {
+    public void setRooms(Room rooms) {
         this.rooms = rooms;
     }
 
+    public LocalDate getToStart() {
+        return toStart;
+    }
 
+    public void setToStart(LocalDate toStart) {
+        this.toStart = toStart;
+    }
+
+    public LocalDate getTheEnd() {
+        return theEnd;
+    }
+
+    public void setTheEnd(LocalDate theEnd) {
+        this.theEnd = theEnd;
+    }
 }
 
 

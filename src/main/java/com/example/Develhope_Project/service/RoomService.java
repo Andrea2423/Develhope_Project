@@ -1,7 +1,9 @@
 package com.example.Develhope_Project.service;
 
 
+import com.example.Develhope_Project.models.Hotel;
 import com.example.Develhope_Project.models.Room;
+import com.example.Develhope_Project.repository.HotelRepository;
 import com.example.Develhope_Project.repository.RoomRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -17,107 +20,102 @@ public class RoomService {
     @Autowired
     RoomRepository roomRepository;
 
-    public Room viewRoom(int id) {
-        Optional<Room> optionalRoom = roomRepository.findById(id);
-        return optionalRoom.orElse(null);
+    @Autowired
+    HotelRepository hotelRepository;
+
+
+    public Optional<Room> viewRoom(int id) throws Exception{
+
+        if (roomRepository.findById(id).isPresent()){
+            return roomRepository.findById(id);
+        } else {
+            throw new Exception(String.format("Room with ID %s not found", id));
+        }
     }
+
 
     public List<Room> viewAllRoom() {
         return roomRepository.findAll();
     }
 
-    public void insertRoom(Room room) {
-        roomRepository.save(room);
+
+    public List<Room> viewRoomsByHotel(int hotelID) throws Exception{
+
+        if (hotelRepository.findById(hotelID).isPresent()) {
+            Hotel hotel = hotelRepository.findById(hotelID).orElse(null);
+
+            List<Room> rooms;
+            rooms = hotel.getRooms();
+
+            return rooms;
+        } else {
+            throw new Exception(String.format("Hotel with ID %s not found", hotelID));
+        }
+
     }
 
-    public void deleteRoom(int id){
-        roomRepository.deleteById(id);
-    }
 
     @Transactional
-    public void updateRoom(int id,
-                           Optional<Integer> roomNumber,
-                           Optional<String> roomType,
-                           Optional<Integer> guests,
-                           Optional<Double> cost,
-                           Optional<Boolean> available,
-                           Optional<Boolean> clean) {
+    public Room insertRoom(int hotelID, Room room) throws Exception {
 
-        Room room = roomRepository.getById(id);
+        if (hotelRepository.findById(hotelID).isPresent()){
+            Hotel hotel = hotelRepository.findById(hotelID).orElse(null);
 
-        if (room != null) {
-            roomNumber.ifPresent(room::setRoomNumber);
-            roomType.ifPresent(room::setRoomType);
-            guests.ifPresent(room::setGuests);
-            cost.ifPresent(room::setCost);
-            available.ifPresent(room::setAvailable);
-            clean.ifPresent(room::setClean);
+            room.setHotel(hotel);
+            hotel.getRooms().add(room);
 
 
-            roomRepository.updateRoom(id,
-                    room.getRoomNumber(),
-                    room.getRoomType(),
-                    room.getGuests(),
-                    room.getCost(),
-                    room.getavailable(),
-                    room.getIsClean());
+            hotelRepository.save(hotel);
+
+        } else {
+            throw new Exception(String.format("Hotel with ID %s not found", hotelID));
+        }
+
+        return roomRepository.save(room);
+    }
+
+
+    public void deleteRoom(int id){
+
+        try {
+            roomRepository.deleteById(id);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
 
+    public Room updateRoom(int id, Room updateRoom) throws Exception{
 
-    ArrayList<Room> rooms = new ArrayList<>();
+        if (roomRepository.findById(id).isPresent()){
 
+            Room room = roomRepository.findById(id).get();
 
-//    public void addRoom(int roomNumber, String roomType, int guest, boolean available, boolean clean, double cost) {
-//        Room addRoom = new Room();
-//        rooms.add(addRoom);
-//    }   // aggiungi stanza *DA AGGIUSTARE*
-
-
-    public void searchRoom(Room roomNumber) {   //cerca stanza
-        for (Room room : rooms) {
-            if (roomNumber.getRoomNumber() == room.getRoomNumber()) {
-                System.out.println(room.toString());
-                ;
+            if (updateRoom.getRoomNumber() != 0){
+                room.setRoomNumber(updateRoom.getRoomNumber());
             }
-        }
-        System.out.println("La stanza non esiste.");
-    } //cerca stanza
 
+            if (Objects.nonNull(updateRoom.getRoomType())){
+                room.setRoomType(updateRoom.getRoomType());
+            }
 
-//    public Room lisOfAvailableRooms() {
-//        List<Room> availableRooms = new ArrayList<>();
-//        for (String room : rooms) {
-//            if (available == true) {
-//                availableRooms.add(room);
-//            }
-//        }
-//        return null;
-//    } //elenco stanze disponibili *DA AGGIUSTARE*
+            if (updateRoom.getGuests() != 0){
+                room.setGuests(updateRoom.getGuests());
+            }
 
-    public void isAvailableOrNot(Room roomNumber) {
-        if (roomNumber.getavailable() == true) {
-            System.out.println("La stanza " + roomNumber + "è libera.");
+            if (updateRoom.getCost() != 0){
+                room.setCost(updateRoom.getCost());
+            }
+
+            if (updateRoom.getavailable() != room.getavailable()){
+                room.setAvailable(updateRoom.getavailable());
+            }
+
+            return roomRepository.save(room);
+
         } else {
-            System.out.println("La stanza " + roomNumber + "è occupata.");
+            throw new Exception(String.format("Room with ID %s not found", id));
         }
-    }// è disponibile o no?
 
-    public void isCleanOrNot(Room room) {
-        if (room.getIsClean() == true) {
-            System.out.println("La stanza è pulita.");
-        } else {
-            System.out.println("La stanza NON è pulita.");
-        }
-    } // è pulita o no?
-
-    public static void canCheckIN(Room roomNumber) {
-        if (roomNumber.getavailable() == true && roomNumber.getIsClean() == true) {
-            System.out.println("La stanza " + roomNumber.getRoomNumber() + " è pronta per il checkin.");
-        } else {
-            System.out.println("La stanza " + roomNumber.getRoomNumber() + " NON è pronta per il checkin.");
-        }
-    }// disponibile per il CheckIN
-
+    }
 }

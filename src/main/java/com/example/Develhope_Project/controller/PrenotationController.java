@@ -3,6 +3,7 @@ package com.example.Develhope_Project.controller;
 import com.example.Develhope_Project.models.Prenotation;
 import com.example.Develhope_Project.service.PrenotationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,44 +11,87 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/prenotation")
 public class PrenotationController {
+
     @Autowired
     PrenotationService prenotationService;
 
-    @PostMapping("/insert-prenotation")
-    public String insertPrenotation(@RequestBody Prenotation prenotation) {
-        prenotationService.insertPrenotation(prenotation);
-        return "reservation entered";
+
+    @PostMapping("/user/{userID}/room/{roomID}")
+    public ResponseEntity createPrenotation(@PathVariable int userID,
+                                            @PathVariable int roomID,
+                                            @RequestBody Prenotation prenotation){
+
+        try {
+            return ResponseEntity.ok(prenotationService.createPrenotation(userID, roomID, prenotation));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @GetMapping("/view-prenotation")
-    public List<Prenotation> viewPrenotation() {
-        return prenotationService.viewPrenotation();
+
+    @GetMapping
+    public ResponseEntity getAllPrenotation(){
+
+        try {
+            return ResponseEntity.ok(prenotationService.viewPrenotation());
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @GetMapping("/prenotations/{id}")
-    public ResponseEntity<Prenotation> getPrenotationById(@PathVariable int id) {
-        Prenotation prenotation = prenotationService.getPrenotationById(id);
-        return ResponseEntity.ok(prenotation);
+
+    @GetMapping("/room/{roomID}")
+    public ResponseEntity getAllPrenotationByRoom(@PathVariable int roomID){
+
+        try {
+            return ResponseEntity.ok(prenotationService.viewPrenotationByRoom(roomID));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @PutMapping("/put-prenotation-user")
-    public List<Prenotation> putPrenotationUser(@RequestBody Prenotation prenotation) {
-        prenotationService.insertPrenotation(prenotation);
-        return prenotationService.putPrenotationUser(prenotation);
+
+    @GetMapping("/hotel/{hotelID}")
+    public ResponseEntity getAllPrenotationByHotel(@PathVariable int hotelID){
+
+        try {
+            return ResponseEntity.ok(prenotationService.viewPrenotationByHotel(hotelID));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    //@DeleteMapping("/delete-prenotation-user/{id}")
-    //public List<Prenotation> deletePrenotationUser(@PathVariable int id) {
-    //    Prenotation prenotation = new Prenotation();
-    //    prenotation.setId(id);
-    //    prenotationService.insertPrenotation(prenotation);
-    //    return prenotationService.putPrenotationUser(prenotation);
-    //}
 
-    @DeleteMapping("/delete-prenotation-user")
-    public List<Prenotation> deletePrenotationUser(@RequestBody Prenotation prenotation) {
-        return prenotationService.deletePrenotation(prenotation);
+    @GetMapping("/{id}")
+    public ResponseEntity getPrenotationByID(@PathVariable int id){
+
+        try {
+            return ResponseEntity.ok(prenotationService.getPrenotationById(id));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity updatePrenotation(@PathVariable int id, @RequestBody Prenotation prenotation){
+
+        try {
+            return ResponseEntity.ok(prenotationService.updatePrenotation(id, prenotation));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
+    @DeleteMapping("/{id}")
+    public String deletePrenotation(@PathVariable int id){
+
+        prenotationService.deletePrenotation(id);
+
+        return String.format("Prenotation with ID %s deleted", id);
     }
 }
 
