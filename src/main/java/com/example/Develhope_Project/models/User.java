@@ -23,6 +23,7 @@ public class User {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
 
+    @Column(unique = true)
     private String email;
 
     private String telephoneNumber;

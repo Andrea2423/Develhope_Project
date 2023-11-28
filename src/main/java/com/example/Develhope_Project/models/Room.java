@@ -39,6 +39,43 @@ public class Room {
     private List<Prenotation> prenotations;
 
 
+
+    public Room(){
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public int getGuests() {
+        return guests;
+    }
+
+    public void setGuests(int guests) {
+        this.guests = guests;
+    }
+
     public double getCost() {
         return cost;
     }
@@ -51,87 +88,25 @@ public class Room {
         return available;
     }
 
-
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public List<Review> getReviewList() {
         return reviewList;
     }
 
-
     public void setReviewList(List<Review> reviewList) {
         this.reviewList = reviewList;
     }
-
-
-    public Room() {}
-    public int getId() {
-        return id;
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public int getGuests() {
-        return guests;
-    }
-
-
-    public void setGuests(int numeroDiOspiti) {
-        this.guests = numeroDiOspiti;
-    }
-
-
-    public boolean getavailable() {
-        return available;
-    }
-
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-
-    public double getPrice() {
-        return cost;
-    }
-
-
-    public void setPrice(double price) {
-        this.cost = price;
-    }
-
-
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
 
     public Hotel getHotel() {
         return hotel;
     }
 
-
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
-
 
     public List<Prenotation> getPrenotations() {
         return prenotations;

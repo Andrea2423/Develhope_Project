@@ -82,4 +82,14 @@ public class RoomController {
 
     }
 
+    @PutMapping("/{id}/available/{changeStatus}")
+    public ResponseEntity changeStatusRoom(@PathVariable int id, @PathVariable boolean changeStatus){
+
+        try {
+            return ResponseEntity.ok(roomService.changeStatusRoom(id, changeStatus));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
 }

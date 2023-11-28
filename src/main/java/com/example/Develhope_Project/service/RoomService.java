@@ -107,8 +107,8 @@ public class RoomService {
                 room.setCost(updateRoom.getCost());
             }
 
-            if (updateRoom.getavailable() != room.getavailable()){
-                room.setAvailable(updateRoom.getavailable());
+            if (updateRoom.isAvailable() != room.isAvailable()){
+                room.setAvailable(updateRoom.isAvailable());
             }
 
             return roomRepository.save(room);
@@ -117,5 +117,21 @@ public class RoomService {
             throw new Exception(String.format("Room with ID %s not found", id));
         }
 
+    }
+
+
+    public Room changeStatusRoom(int id, boolean changeStatus) throws Exception{
+
+        if (roomRepository.findById(id).isPresent()){
+
+            Room room = roomRepository.findById(id).get();
+
+            room.setAvailable(changeStatus);
+            roomRepository.save(room);
+
+            return room;
+        } else {
+            throw new Exception(String.format("Room with ID %s not found", id));
+        }
     }
 }
