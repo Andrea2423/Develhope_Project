@@ -14,12 +14,16 @@ public class Room {
     @Id
     @GeneratedValue
     private int id;
+
     private int roomNumber; //numero stanza
+
     private String roomType; //tipologia di stanza
+
     private int guests;  //numero ospiti
+
     private double cost;  //costo stanza
+
     private boolean available;  //disponibile
-    private boolean clean;   //pulita
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -30,77 +34,22 @@ public class Room {
     @JsonIgnore
     private Hotel hotel;
 
-    @ManyToOne
-    @JoinColumn(name = "prenotation__id")
+    @OneToMany(mappedBy = "rooms", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Prenotation prenotation;
+    private List<Prenotation> prenotations;
 
 
-    public double getCost() {
-        return cost;
+
+    public Room(){
+
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public boolean isClean() {
-        return clean;
-    }
-
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
-
-
-
-    public Room() {}
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-    public int getGuests() {
-        return guests;
-    }
-
-    public void setGuests(int numeroDiOspiti) {
-        this.guests = numeroDiOspiti;
-    }
-
-    public boolean getavailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public boolean getIsClean() {
-        return clean;
-    }
-
-    public void setClean(boolean clean) {
-        this.clean = clean;
-    }
-
-    public double getPrice() {
-        return cost;
-    }
-
-    public void setPrice(double price) {
-        this.cost = price;
     }
 
     public int getRoomNumber() {
@@ -119,6 +68,38 @@ public class Room {
         this.roomType = roomType;
     }
 
+    public int getGuests() {
+        return guests;
+    }
+
+    public void setGuests(int guests) {
+        this.guests = guests;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
     public Hotel getHotel() {
         return hotel;
     }
@@ -127,37 +108,11 @@ public class Room {
         this.hotel = hotel;
     }
 
-    public Prenotation getPrenotation() {
-        return prenotation;
+    public List<Prenotation> getPrenotations() {
+        return prenotations;
     }
 
-    public void setPrenotation(Prenotation prenotation) {
-        this.prenotation = prenotation;
+    public void setPrenotations(List<Prenotation> prenotations) {
+        this.prenotations = prenotations;
     }
-
-
-
-
-    public Room(int roomNumber, String roomType, int guests, boolean available, boolean clean, double cost) {
-        this.roomNumber = roomNumber;
-        this.roomType = roomType;
-        this.guests = guests;
-        this.available = available;
-        this.clean = clean;
-        this.cost = cost;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Room{");
-        sb.append("roomNumber=").append(roomNumber);
-        sb.append(", roomType='").append(roomType).append('\'');
-        sb.append(", guests=").append(guests);
-        sb.append(", cost=").append(cost);
-        sb.append(", available=").append(available);
-        sb.append(", clean=").append(clean);
-        sb.append('}');
-        return sb.toString();
-    }
-
 }

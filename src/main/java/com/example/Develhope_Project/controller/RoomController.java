@@ -4,6 +4,9 @@ import com.example.Develhope_Project.models.Room;
 import com.example.Develhope_Project.repository.RoomRepository;
 import com.example.Develhope_Project.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,40 +20,76 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping("/{id}")
-    public Room viewRoom(@PathVariable int id) {
-        return roomService.viewRoom(id);
+    public ResponseEntity viewRoomByID(@PathVariable int id) {
+
+        try {
+            return ResponseEntity.ok(roomService.viewRoom(id));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
+
 
     @GetMapping
-    public List<Room> viewAllRooms() {
-        return roomService.viewAllRoom();
+    public ResponseEntity viewAllRooms() {
+
+        try {
+            return ResponseEntity.ok(roomService.viewAllRoom());
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @PostMapping
-    public String insertRoom(@RequestBody Room room) {
-        roomService.insertRoom(room);
-        return "New room inserted";
+
+    @GetMapping("/hotel/{hotelID}")
+    public ResponseEntity viewRoomsByHotel(@PathVariable int hotelID){
+
+        try {
+            return ResponseEntity.ok(roomService.viewRoomsByHotel(hotelID));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
+    @PostMapping("/{hotelID}")
+    public ResponseEntity insertRoom(@PathVariable int hotelID, @RequestBody Room room) {
+
+        try {
+            return ResponseEntity.ok(roomService.insertRoom(hotelID, room));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
     public String deleteRoom(@PathVariable int id){
+
         roomService.deleteRoom(id);
-        return "Room deleted.";
+
+        return String.format("Room with ID %s deleted", id);
     }
 
+
     @PutMapping("/{id}")
-    public String updateReview(@PathVariable int id, @RequestBody Room room) {
+    public ResponseEntity updateReview(@PathVariable int id, @RequestBody Room room) {
 
-        roomService.updateRoom(id,
-                Optional.of(room.getRoomNumber()),
-                Optional.ofNullable(room.getRoomType()),
-                Optional.of(room.getGuests()),
-                Optional.of(room.getCost()),
-                Optional.of(room.getavailable()),
-                Optional.of(room.getIsClean()));
+        try {
+            return ResponseEntity.ok(roomService.updateRoom(id, room));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
 
-        return "Room updated";
+    }
 
+    @PutMapping("/{id}/available/{changeStatus}")
+    public ResponseEntity changeStatusRoom(@PathVariable int id, @PathVariable boolean changeStatus){
+
+        try {
+            return ResponseEntity.ok(roomService.changeStatusRoom(id, changeStatus));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 }

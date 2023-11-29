@@ -5,6 +5,8 @@ import com.example.Develhope_Project.models.User;
 import com.example.Develhope_Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,36 +21,47 @@ public class UserController {
 
 
     @PostMapping
-    public String insertUser(@RequestBody User user){
-        userService.insertUser(user);
-        return "New user inserted";
+    public ResponseEntity insertUser(@RequestBody User user){
+
+        try {
+            return ResponseEntity.ok(userService.insertUser(user));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
     }
 
 
     @GetMapping
-    public List<User> viewAllUsers(){
-        return userService.viewAllUser();
+    public ResponseEntity viewAllUsers(){
+
+        try {
+            return ResponseEntity.ok(userService.viewAllUser());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 
     @GetMapping("/{id}")
-    public Optional<User> viewUserByID(@PathVariable int id){
-        return userService.viewUserById(id);
+    public ResponseEntity viewUserByID(@PathVariable int id){
+
+        try {
+            return ResponseEntity.ok(userService.viewUserById(id));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable int id, @RequestBody User user){
+    public ResponseEntity updateUser(@PathVariable int id, @RequestBody User user){
 
-        userService.updateUser(id,
-                Optional.ofNullable(user.getName()),
-                Optional.ofNullable(user.getSurname()),
-                Optional.of(user.getDateOfBirth()),
-                Optional.ofNullable(user.getEmail()),
-                Optional.ofNullable(user.getTelephoneNumber()),
-                Optional.ofNullable(user.getPaymentMethod()));
-
-        return "User updated";
+        try {
+            return ResponseEntity.ok(userService.updateUser(id, user));
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 
@@ -56,6 +69,6 @@ public class UserController {
     public String deleteUser(@PathVariable int id){
         userService.deleteUser(id);
 
-        return "User with ID " + " deleted";
+        return String.format("User with ID %s deleted", id);
     }
 }

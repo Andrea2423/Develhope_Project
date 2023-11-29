@@ -2,6 +2,7 @@ package com.example.Develhope_Project.models;
 
 import com.example.Develhope_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class User {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
 
+    @Column(unique = true)
     private String email;
 
     private String telephoneNumber;
@@ -29,6 +31,7 @@ public class User {
     private String paymentMethod;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Prenotation> prenotations;
 
 

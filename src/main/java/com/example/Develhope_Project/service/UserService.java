@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -19,8 +20,8 @@ public class UserService {
     UserRepository userRepository;
 
 
-    public void insertUser(User user){
-        userRepository.save(user);
+    public User insertUser(User user){
+        return userRepository.save(user);
     }
 
 
@@ -29,42 +30,62 @@ public class UserService {
     }
 
 
-    public Optional<User> viewUserById(int id){
-        return userRepository.findById(id);
-    }
+    public Optional<User> viewUserById(int id) throws Exception{
 
-    @Transactional
-    public void updateUser(int id,
-                           Optional<String> name,
-                           Optional<String> surname,
-                           Optional<LocalDate> dateOfBirth,
-                           Optional<String> email,
-                           Optional<String> telephoneNumber,
-                           Optional<String> paymentMethod){
-
-        User user = userRepository.getById(id);
-
-        if (user != null){
-            name.ifPresent(user::setName);
-            surname.ifPresent(user::setSurname);
-            dateOfBirth.ifPresent(user::setDateOfBirth);
-            email.ifPresent(user::setEmail);
-            telephoneNumber.ifPresent(user::setTelephoneNumber);
-            paymentMethod.ifPresent(user::setPaymentMethod);
-
-            userRepository.updateUser(id,
-                    user.getName(),
-                    user.getSurname(),
-                    user.getEmail(),
-                    user.getDateOfBirth(),
-                    user.getTelephoneNumber(),
-                    user.getPaymentMethod());
+        if (userRepository.findById(id).isPresent()){
+            return userRepository.findById(id);
+        } else {
+            throw new Exception(String.format("User with ID %s not found", id));
         }
+
     }
 
 
-    public void deleteUser(int id){
-        userRepository.deleteById(id);
+    public User updateUser(int id, User newUser) throws Exception {
+
+        if (userRepository.findById(id).isPresent()){
+
+            User user = userRepository.findById(id).get();
+
+            if (Objects.nonNull(newUser.getName())){
+                user.setName(newUser.getName());
+            }
+
+            if (Objects.nonNull(newUser.getSurname())){
+                user.setSurname(newUser.getSurname());
+            }
+
+            if (Objects.nonNull(newUser.getDateOfBirth())){
+                user.setDateOfBirth(newUser.getDateOfBirth());
+            }
+
+            if (Objects.nonNull(newUser.getEmail())){
+                user.setEmail(newUser.getEmail());
+            }
+
+            if (Objects.nonNull(newUser.getTelephoneNumber())){
+                user.setTelephoneNumber(newUser.getTelephoneNumber());
+            }
+
+            if (Objects.nonNull(newUser.getPaymentMethod())){
+                user.setPaymentMethod(newUser.getPaymentMethod());
+            }
+            return userRepository.save(user);
+        } else {
+            throw new Exception(String.format("User with ID %s not found", id));
+        }
+
+    }
+
+
+    public void deleteUser(int id) {
+
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.Develhope_Project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -8,64 +9,83 @@ public class Owner {
     @Id
     @GeneratedValue
     private int id;
-    private String nome;
-    private String indirizzo;
+
+    private String name;
+
+    private String address;
+
+    @Column(unique = true)
     private String email;
-    private String numeroTelefono;
+
+    private String phoneNumber;
+
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Hotel> hotels;
 
-    /*
-    Bloccano l'app
 
-    private List<Hotel> strutture;
-    private List<Review> recensioni; //Creare un metodo che restituisce la MEDIA delle recensioni
-
-     */
 
     public Owner(){
 
     }
 
 
-
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
+
+    public String getAddress() {
+        return address;
     }
 
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
+
 
     public String getEmail() {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getNumeroTelefono() {
-        return numeroTelefono;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setNumeroTelefono(String numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+    public List<Hotel> getHotels() {
+        return hotels;
+    }
+
+
+    public void setHotels(List<Hotel> hotels) {
+        this.hotels = hotels;
     }
 }

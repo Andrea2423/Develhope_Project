@@ -3,6 +3,7 @@ package com.example.Develhope_Project.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ public class Hotel {
 
     private String hotelServices;
 
-    private int hotelCategory;
+
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -30,12 +31,12 @@ public class Hotel {
     private Owner owner;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<Room> rooms;
-
-    @ManyToOne
-    @JoinColumn(name = "prenotation_id")
     @JsonIgnore
-    private Prenotation prenotation;
+    private List<Room> rooms = new ArrayList<>();
+
+    @OneToMany(mappedBy = "hotel")
+    @JsonIgnore
+    private List<Prenotation> prenotations;
 
 
     public Hotel(int hotelId, String s) {
@@ -94,13 +95,6 @@ public class Hotel {
         this.hotelServices = hotelServices;
     }
 
-    public int getHotelCategory() {
-        return hotelCategory;
-    }
-
-    public void setHotelCategory(int hotelCategory) {
-        this.hotelCategory = hotelCategory;
-    }
 
     public Owner getOwner() {
         return owner;
@@ -118,11 +112,11 @@ public class Hotel {
         this.rooms = rooms;
     }
 
-    public Prenotation getPrenotation() {
-        return prenotation;
+    public List<Prenotation> getPrenotations() {
+        return prenotations;
     }
 
-    public void setPrenotation(Prenotation prenotation) {
-        this.prenotation = prenotation;
+    public void setPrenotations(List<Prenotation> prenotations) {
+        this.prenotations = prenotations;
     }
 }
